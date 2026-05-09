@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1a1a1a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Book Catalogue</title>
+<link rel="manifest" href="manifest.json">
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #fafaf9;
+    --fg: #1a1a1a;
+    --muted: #6b7280;
+    --card: #fff;
+    --border: #e5e7eb;
+    --accent: #2563eb;
+    --owned: #16a34a;
+    --borrowed: #d97706;
+    --wishlist: #7c3aed;
+    --bad: #dc2626;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f0f0f;
+      --fg: #f3f4f6;
+      --muted: #9ca3af;
+      --card: #1c1c1c;
+      --border: #2c2c2c;
+      --accent: #60a5fa;
+      --owned: #4ade80;
+      --borrowed: #fbbf24;
+      --wishlist: #a78bfa;
+      --bad: #f87171;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font: 16px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  header {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--bg);
+    padding: 12px 16px 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  h1 {
+    margin: 0 0 8px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  #q {
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--card);
+    color: var(--fg);
+    -webkit-appearance: none;
+  }
+  #q:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+  #status {
+    font-size: 0.85rem;
+    color: var(--muted);
+    padding: 8px 0 0;
+  }
+  main { padding: 12px 16px 32px; }
+  .work {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin: 0 0 10px;
+  }
+  .title { font-weight: 600; font-size: 1.05rem; line-height: 1.3; }
+  .author { color: var(--muted); font-size: 0.95rem; margin-top: 2px; }
+  .meta { color: var(--muted); font-size: 0.8rem; margin-top: 4px; }
+  .copies {
+    margin-top: 10px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .copy {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-weight: 500;
+  }
+  .badge.owned    { background: color-mix(in srgb, var(--owned) 18%, transparent);    color: var(--owned); }
+  .badge.borrowed { background: color-mix(in srgb, var(--borrowed) 18%, transparent); color: var(--borrowed); }
+  .badge.lost,
+  .badge.sold,
+  .badge.returned { background: color-mix(in srgb, var(--bad) 18%, transparent); color: var(--bad); }
+  .badge.loaned-out { background: color-mix(in srgb, var(--borrowed) 18%, transparent); color: var(--borrowed); }
+  .copy-where { color: var(--muted); }
+  .empty {
+    text-align: center;
+    color: var(--muted);
+    padding: 40px 16px;
+    font-size: 0.95rem;
+  }
+  .own-summary {
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--owned) 18%, transparent);
+    color: var(--owned);
+    font-weight: 500;
+    margin-left: 8px;
+  }
+  .own-summary.none {
+    background: color-mix(in srgb, var(--muted) 15%, transparent);
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Book Catalogue</h1>
+  <input id="q" type="search" placeholder="Search title or author..."
+         autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+  <div id="status">Loading database...</div>
+</header>
+<main id="results"></main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+<script>
+(async () => {
+  const $status  = document.getElementById('status');
+  const $results = document.getElementById('results');
+  const $q       = document.getElementById('q');
+
+  let db;
+  try {
+    const SQL = await initSqlJs({
+      locateFile: f => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/${f}`
+    });
+    const r = await fetch('library.db', { cache: 'no-store' });
+    if (!r.ok) throw new Error(`fetch library.db: HTTP ${r.status}`);
+    const buf = await r.arrayBuffer();
+    db = new SQL.Database(new Uint8Array(buf));
+    const [{ values: [[wc]] }] = db.exec('SELECT COUNT(*) FROM works');
+    const [{ values: [[cc]] }] = db.exec('SELECT COUNT(*) FROM copies');
+    $status.textContent = `${wc.toLocaleString()} works · ${cc.toLocaleString()} copies`;
+  } catch (e) {
+    $status.textContent = `Failed to load: ${e.message}`;
+    $status.style.color = 'var(--bad)';
+    return;
+  }
+
+  const fmtFTS = q => {
+    const tokens = q.trim().split(/\s+/)
+      .filter(t => t.length > 0)
+      .map(t => t.replace(/['"]/g, ''))
+      .filter(t => t.length > 0)
+      .map(t => `"${t}"*`);
+    return tokens.join(' ');
+  };
+
+  const search = (q) => {
+    if (!q || q.trim().length < 2) { render([]); return; }
+    let rows;
+    try {
+      const stmt = db.prepare(`
+        SELECT w.id, w.title, w.subtitle, w.author_display, w.original_year,
+               w.series_name, w.series_position
+        FROM works w
+        JOIN works_fts f ON f.rowid = w.id
+        WHERE works_fts MATCH ?
+        ORDER BY rank
+        LIMIT 50
+      `);
+      stmt.bind([fmtFTS(q)]);
+      rows = [];
+      while (stmt.step()) rows.push(stmt.getAsObject());
+      stmt.free();
+    } catch (e) {
+      // FTS query parse failure (e.g. trailing operators) — fall back to LIKE
+      const like = `%${q}%`;
+      const stmt = db.prepare(`
+        SELECT id, title, subtitle, author_display, original_year, series_name, series_position
+        FROM works
+        WHERE title LIKE ? OR author_display LIKE ?
+        ORDER BY title LIMIT 50
+      `);
+      stmt.bind([like, like]);
+      rows = [];
+      while (stmt.step()) rows.push(stmt.getAsObject());
+      stmt.free();
+    }
+    if (!rows.length) { render([]); return; }
+    const ids = rows.map(r => r.id);
+    const placeholders = ids.map(() => '?').join(',');
+    const copyStmt = db.prepare(`
+      SELECT c.id, c.edition_id, c.medium, c.status, c.borrowed_until,
+             c.acquired_date, c.notes,
+             e.format, e.work_id,
+             l.name AS location, v.name AS vendor
+      FROM copies c
+      JOIN editions e ON e.id = c.edition_id
+      LEFT JOIN locations l ON l.id = c.location_id
+      LEFT JOIN vendors   v ON v.id = c.vendor_id
+      WHERE e.work_id IN (${placeholders})
+      ORDER BY c.medium, c.status
+    `);
+    copyStmt.bind(ids);
+    const copiesByWork = {};
+    while (copyStmt.step()) {
+      const c = copyStmt.getAsObject();
+      (copiesByWork[c.work_id] = copiesByWork[c.work_id] || []).push(c);
+    }
+    copyStmt.free();
+    rows.forEach(r => r.copies = copiesByWork[r.id] || []);
+    render(rows);
+  };
+
+  const render = (rows) => {
+    if (!rows.length) {
+      $results.innerHTML = $q.value.trim().length < 2
+        ? `<div class="empty">Type to search.</div>`
+        : `<div class="empty">No matches.<br><small>Not in your catalog — safe to buy.</small></div>`;
+      return;
+    }
+    $results.innerHTML = rows.map(workCard).join('');
+  };
+
+  const escape = s => (s == null ? '' : String(s).replace(/[<>&"]/g,
+    ch => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[ch])));
+
+  const workCard = (w) => {
+    const copies = w.copies || [];
+    const ownedCount = copies.filter(c => c.status === 'owned').length;
+    const summary = ownedCount > 0
+      ? `<span class="own-summary">Owned (${ownedCount})</span>`
+      : `<span class="own-summary none">Not owned</span>`;
+    const series = w.series_name
+      ? ` · ${escape(w.series_name)}${w.series_position ? ' #' + w.series_position : ''}`
+      : '';
+    return `
+      <div class="work">
+        <div class="title">${escape(w.title)}${summary}</div>
+        ${w.subtitle ? `<div class="meta">${escape(w.subtitle)}</div>` : ''}
+        <div class="author">${escape(w.author_display || '—')}</div>
+        <div class="meta">${w.original_year ? escape(w.original_year) : ''}${series}</div>
+        ${copies.length ? `<div class="copies">${copies.map(copyRow).join('')}</div>` : ''}
+      </div>
+    `;
+  };
+
+  const copyRow = (c) => {
+    const where = c.location
+      ? `at <span class="copy-where">${escape(c.location)}</span>`
+      : c.vendor
+        ? `on <span class="copy-where">${escape(c.vendor)}</span>`
+        : '';
+    const dueWarning = c.status === 'borrowed' && c.borrowed_until
+      ? ` (until ${escape(c.borrowed_until)})` : '';
+    return `
+      <div class="copy">
+        <span class="badge ${escape(c.status)}">${escape(c.status)}${dueWarning}</span>
+        <span>${escape(c.format)} · ${escape(c.medium)}</span>
+        ${where ? `<span>${where}</span>` : ''}
+      </div>
+    `;
+  };
+
+  let timer;
+  $q.addEventListener('input', () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => search($q.value), 150);
+  });
+
+  // Auto-focus on desktop only (not mobile, where it pops the keyboard immediately)
+  if (!matchMedia('(pointer: coarse)').matches) $q.focus();
+})();
+</script>
+</body>
+</html>

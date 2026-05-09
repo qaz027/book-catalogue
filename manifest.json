@@ -1,0 +1,11 @@
+{
+  "name": "Book Catalogue",
+  "short_name": "Books",
+  "description": "Personal library lookup — am I about to buy a book I already own?",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fafaf9",
+  "theme_color": "#1a1a1a",
+  "icons": []
+}
