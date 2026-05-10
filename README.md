@@ -50,22 +50,22 @@ Drop your raw exports into `data/raw/` (gitignored). The Goodreads importer crea
 
 ### Adding books from the phone (Phase 2 capture inbox)
 
-Take a photo, share it via email to your own Gmail with a subject tag:
+Take a photo on your phone, share it to **Google Drive**, save it into the appropriate subfolder of a top-level folder called `Book Catalogue`:
 
-| Subject       | What it captures                                  |
-|---------------|---------------------------------------------------|
-| `[shelf]`     | Multiple books on a shelf (yields a batch)        |
-| `[wishlist]`  | A book you want (X screenshot, typed title)       |
-| `[add]`       | One specific newly-acquired book                  |
-| `[memo]`      | Voice memo from an audiobook drive (Phase 4 — deferred) |
+| Drive subfolder            | What goes there                                            |
+|----------------------------|------------------------------------------------------------|
+| `Book Catalogue/shelf/`    | Photos of one or more book spines on a shelf               |
+| `Book Catalogue/wishlist/` | Books you want — X screenshots, photos of covers, notes    |
+| `Book Catalogue/add/`      | One specific newly-acquired book in clear focus            |
+| `Book Catalogue/memo/`     | Voice memos from audiobook drives (Phase 4 — deferred)     |
 
-The subject can include extra text: `[shelf] living room shelf 3` carries the shelf name into processing.
+If the folders don't exist yet, Claude will create them on first run.
 
 Then, on the desktop, open Claude Code in this repo and tell it:
 
 > Process the inbox.
 
-Claude will pull the tagged emails, extract books from each photo, ask you to confirm, and route the captures into the catalog or wishlist. See `CLAUDE.md` for the exact playbook.
+Claude will list new files in those Drive folders, download them via the Drive MCP, view each image, ask you to confirm the extracted books, and route the captures into the catalog or wishlist. Drive file IDs already processed are tracked in `inbox/.processed_drive_ids.txt` (committed) so reruns are idempotent. See `CLAUDE.md` for the exact playbook.
 
 ### Saving changes
 

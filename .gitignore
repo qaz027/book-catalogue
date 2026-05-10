@@ -17,11 +17,13 @@ Thumbs.db
 data/raw/
 data/cache/
 
-# Inbox: track structure and docs but not raw captures
+# Inbox: track structure and dedupe state but not raw captures
 inbox/incoming/*
 inbox/processed/*
 !inbox/**/.gitkeep
 !inbox/README.md
+!inbox/.processed_drive_ids.txt
+!inbox/.drive_root_id
 
 *.tmp
 

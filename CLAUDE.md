@@ -7,7 +7,7 @@ This file is auto-loaded by Claude Code when opened in this repo. It documents t
 - **Catalog DB:** `library.db` (SQLite, committed to repo). Schema in `schema.sql`.
 - **Model:** `works` (the abstract book) → `editions` (specific ISBN/format) → `copies` (instances you own/borrow).
 - **Lookup UI:** `index.html` deployed to `https://qaz027.github.io/book-catalogue/`. Read-only PWA over the committed `library.db`.
-- **Capture inbox:** Phone → email → `inbox/incoming/` → desktop processing (you, Claude) → routed to catalog/wishlist → archived to `inbox/processed/<date>/`.
+- **Capture transport:** **Google Drive** — phone shares to `Book Catalogue/<tag>/` folders; Claude pulls via `mcp__claude_ai_Google_Drive__*` tools. (Email/Gmail was tried first; the Gmail MCP cannot download attachment bytes, so Drive replaced it.)
 - **Author/owner:** qaz027 / francis.quimby@gmail.com. Single user, no sharing.
 
 ## Directory map
@@ -21,68 +21,82 @@ scripts/add_book_batch.py             Non-interactive bulk insert (JSON in, JSON
 scripts/add_to_wishlist.py            Bulk wishlist insert (JSON in, JSON out)
 scripts/import_goodreads.py           Goodreads CSV importer
 scripts/import_amazon_kindle.py       Amazon Kindle library importer
-inbox/incoming/                       Raw captures awaiting processing (gitignored)
+inbox/incoming/                       Files downloaded from Drive, awaiting processing (gitignored)
 inbox/processed/<YYYY-MM-DD>/         Archived after processing (gitignored)
+inbox/.processed_drive_ids.txt        Tracks Drive file IDs already processed (committed — multi-machine state)
+inbox/.drive_root_id                  Cached Drive ID of the "Book Catalogue" folder (committed)
 data/raw/                             Vendor exports (gitignored, private)
 index.html, manifest.json             PWA search UI
 ```
 
+## Drive folder convention
+
+The user keeps a folder in Google Drive called **`Book Catalogue`** with these subfolders:
+
+```
+Book Catalogue/
+  shelf/        photos of one or more book spines on a shelf
+  wishlist/     X screenshots, photos of covers in a store, anything to remember
+  add/          one specific newly-acquired book in clear focus
+  memo/         voice memos from audiobook drives  (Phase 4 — defer)
+```
+
+Phone capture is one-tap: take photo → Share → Save to Drive → choose the right subfolder.
+
+If any of these folders are missing on first invocation, **create them** using `mcp__claude_ai_Google_Drive__create_file` with the folder mime type. Tell the user where to drop captures from now on.
+
 ## When the user says "process the inbox" (or similar)
 
-**Goal:** Pull tagged emails from Gmail, route captures to the right destination, get user confirmation before any DB write, archive processed items, optionally commit + push.
+**Goal:** Find new files in the Drive subfolders, download them locally, route through the right pipeline, get user confirmation before any DB write, archive locally, mark the Drive file as processed, optionally commit + push.
 
-### 1. Discover what's pending
+### 1. Locate the Drive root folder
 
-Use the Gmail MCP to find unprocessed captures. Try this search first:
+If `inbox/.drive_root_id` exists, read the cached folder ID. Otherwise:
+- Use `mcp__claude_ai_Google_Drive__search_files` with a query like `name = 'Book Catalogue' and mimeType = 'application/vnd.google-apps.folder'`
+- If found, write the ID to `inbox/.drive_root_id`
+- If not found, create it (and the four subfolders) with `create_file`, then write the ID
 
+### 2. List candidate files
+
+For each tag folder (`shelf`, `wishlist`, `add` — skip `memo`):
+- Use `search_files` with `'<folder-id>' in parents and trashed = false` to list children
+- Filter out anything whose Drive file ID is already in `inbox/.processed_drive_ids.txt`
+
+If nothing pending: tell the user "Drive inbox is empty," stop.
+
+### 3. Download to inbox/incoming/
+
+For each pending file:
+- Use `mcp__claude_ai_Google_Drive__get_file_metadata` to get the original filename and modified time
+- Use `mcp__claude_ai_Google_Drive__download_file_content` to pull the bytes
+- Save to `inbox/incoming/<YYYY-MM-DD>_<tag>_<short-id>.<ext>` where the date comes from the file's modifiedTime, not today, and short-id is the first 6 chars of the Drive ID
+
+### 4. Read each image
+
+Use the `Read` tool to view the saved file. Claude Code can read images directly.
+
+### 5. Route by tag
+
+#### `shelf/` — multiple books on a shelf
+
+a. **Extract candidate books.** Look at every visible spine: title, author (if visible), format hint (mass-market / trade paperback / hardcover from spine width and proportions), any visible ISBN.
+
+b. **Show the user the list.** Numbered, editable:
 ```
-subject:"[shelf]" -label:book-catalogue-processed in:anywhere
-```
-
-Run the same search with `[wishlist]` and `[add]` (defer `[memo]`). The `book-catalogue-processed` label may not exist yet — if so, just use the subject filter.
-
-For each matched thread, call `get_thread` to retrieve the email body and attachments.
-
-### 2. Save attachments to inbox/incoming/
-
-For each attachment, save to a path like:
-
-```
-inbox/incoming/<YYYY-MM-DD>_<tag>_<n>.<ext>
-```
-
-E.g., `inbox/incoming/2026-05-09_shelf_01.jpg`. The date comes from the email date, not today's date — keeps temporal grouping intact. Use the email's subject suffix (after the tag) as a hint for context, e.g. subject `[shelf] living room shelf 3` → save the location hint for step 4.
-
-### 3. Read each image
-
-Use the `Read` tool to view each saved image. Claude Code can read images directly.
-
-### 4. Route by capture type
-
-#### `[shelf]` — multiple books on a shelf
-
-For each photo:
-
-a. **Extract candidate books.** Look at every visible spine. For each, capture: title, author (if visible), format hint (mass-market / trade paperback / hardcover based on size and proportions), and any visible ISBN.
-
-b. **Show the user the list.** Present as a numbered, editable list:
-```
-Photo: 2026-05-09_shelf_01.jpg
-Subject hint: "living room shelf 3"
-
+Photo: 2026-05-10_shelf_a3f4c2.jpg  (from Drive: "20260510_shelf_living_room.jpg")
 Books detected:
   1. Dune — Frank Herbert (mass-market)
   2. Children of Time — Adrian Tchaikovsky (trade paperback)
   3. <unclear spine> — possibly "The Three-Body Problem"
   ...
 
-Location for these books: living room shelf 3 (from subject hint)
-Anything to remove or correct? (Otherwise I'll add all 12.)
+What's the location for these books? (e.g., "living room shelf 3")
+Anything to remove or correct?
 ```
 
-c. **Wait for confirmation.** Don't proceed until the user confirms or edits. Ask explicitly about ambiguous spines.
+c. **Wait for confirmation.** Don't proceed until the user confirms. Ask explicitly about ambiguous spines.
 
-d. **Build a JSON batch** with the confirmed books:
+d. **Build a JSON batch:**
 ```json
 [
   {
@@ -92,73 +106,67 @@ d. **Build a JSON batch** with the confirmed books:
     "medium": "physical",
     "location": "living room shelf 3",
     "condition": "good",
-    "source_image": "inbox/incoming/2026-05-09_shelf_01.jpg"
+    "source_image": "inbox/incoming/2026-05-10_shelf_a3f4c2.jpg"
   }
 ]
 ```
 
-e. **Run** `python3 scripts/add_book_batch.py < batch.json` (write the JSON to a temp file or pipe via heredoc). The script does ISBN lookup, upserts works/editions, inserts copies, returns a JSON summary.
+e. **Run** `python3 scripts/add_book_batch.py < batch.json` (heredoc the JSON or write it to a temp file). The script does ISBN lookup, upserts works/editions, inserts copies, returns a JSON summary.
 
-f. **Move the photo:** `mv inbox/incoming/<file> inbox/processed/<YYYY-MM-DD>/<file>` (mkdir as needed).
+f. **Move locally:** `mv inbox/incoming/<file> inbox/processed/<YYYY-MM-DD>/<file>` (mkdir as needed).
 
-g. **Label the Gmail thread.** Apply label `book-catalogue-processed` using `label_thread` (create the label first via `create_label` if it doesn't exist).
+g. **Mark processed in Drive:** append the Drive file ID to `inbox/.processed_drive_ids.txt`. Do NOT try to move/delete files in Drive — the Drive MCP doesn't expose those operations. The user will manually clean the Drive folder periodically.
 
-#### `[wishlist]` — books you want
+#### `wishlist/` — books you want
 
-For each capture (could be a screenshot of an X post, a typed title in the email body, or a photo of a cover):
+a. **Extract** title and author. If the file is a screenshot of an X post, OCR for the book title and the post URL. If a typed note, parse the text. If a cover photo, extract title/author.
 
-a. **Extract** title and author. If the email body has typed text, prefer that over OCR.
+b. **Note the source:** filename, "from X (handle: @user)", URL if visible.
 
-b. **Note the source.** Pull from email body or subject:
-   - URL? → `source_url`
-   - "saw on X / from @user / recommended by..." → `source` text
-   - Just a photo? → `source_image_path` only
-
-c. **Show the user** the extracted entry, and crucially, **whether the work already matches something owned**: `add_to_wishlist.py` reports `already_owned: true` if found. Surface that as a warning.
+c. **Show the user** the extracted entry. The script flags `already_owned: true` if the work is already in `copies` — surface that.
 
 d. **Build JSON** and run `python3 scripts/add_to_wishlist.py < batch.json`.
 
-e. **Move file + label thread** as in shelf step f-g.
+e. **Move file + record processed ID** as in shelf step f-g.
 
-#### `[add]` — single specific book
+#### `add/` — single specific book
 
-Use this when the user wants to add one specific book they've just bought (not a shelf, not a wish — a real new acquisition with cover/spine in clear focus).
+Use this when the user just bought one specific book.
 
-a. **Extract** title, author, ISBN if visible. Encourage Claude to look up the ISBN explicitly via Open Library / Google Books.
+a. **Extract** title, author, ISBN if visible. Look up the ISBN explicitly via Open Library / Google Books.
 
 b. **Ask** about medium (default physical), location/vendor, condition, acquired_date.
 
 c. **Insert** via `add_book_batch.py`.
 
-#### `[memo]` — voice memo
+#### `memo/` — voice memo
 
-**Deferred to Phase 4.** For now: leave the email in place, do NOT label it processed. Tell the user "memo capture isn't built yet — left in inbox." Skip.
+**Deferred to Phase 4.** Don't process. If you see files there, tell the user "memo capture isn't built yet — left in place."
 
-### 5. Summarise and offer commit
-
-Show the user:
+### 6. Summarise and offer commit
 
 ```
-Processed 3 photos:
-  - 2026-05-09_shelf_01.jpg → 12 books added to "living room shelf 3"
-  - 2026-05-09_wishlist_02.png → 1 wishlist entry (NEW)
-  - 2026-05-09_wishlist_03.png → 1 wishlist entry (already owned — flagged)
+Processed 3 files:
+  - shelf/20260510_shelf_living_room.jpg  → 12 books to "living room shelf 3"
+  - wishlist/x_post_001.png               → 1 wishlist entry (NEW)
+  - wishlist/x_post_002.png               → 1 wishlist entry (already owned — flagged)
 
-3 emails labelled book-catalogue-processed.
+3 Drive file IDs recorded as processed.
 
 Commit and push? (Y/n)
 ```
 
-If yes: `git add library.db inbox/processed/`, commit with a clear message, then ask before `git push`. Pushing rebuilds the public Pages deploy in ~30s.
+If yes: `git add library.db inbox/.processed_drive_ids.txt`, commit with a clear message, then ask before `git push`.
 
 ## Important rules
 
 - **Always confirm before any DB write.** Vision can hallucinate titles, especially on stylized spines or partially obscured books. The user is the final reviewer.
 - **Never auto-push.** Always ask. Pushing rewrites the public Pages site.
-- **Never delete inbox files.** Move to `inbox/processed/<date>/`. The user can clean up later.
+- **Never delete or move files in Drive.** The MCP doesn't expose those operations and the user controls cleanup. Just record the ID locally and skip on next run.
+- **Never delete inbox/incoming files.** Move to `inbox/processed/<date>/`.
 - **Never edit `library.db` directly with SQL.** Use the `add_*` scripts. They handle FTS triggers, dedupe, foreign keys.
 - **Schema changes go through `schema.sql`.** Don't `ALTER TABLE` ad-hoc.
-- **Don't process `[memo]` yet.** Phase 4 deals with voice memos. Skip them silently.
+- **Don't process `memo/` yet.** Phase 4.
 - **Treat raw vendor exports as private.** They live in `data/raw/` (gitignored).
 
 ## Useful one-liners
@@ -173,30 +181,21 @@ for tbl in ('works', 'editions', 'copies', 'wishlist'):
     print(f'{tbl:12s} {n}')"
 ```
 
-Find books that are wishlisted AND already owned:
+Find books wishlisted that are already owned:
 ```sql
-SELECT w.id, w.title_raw, w.author_raw, w.notes
+SELECT w.id, w.title_raw, w.author_raw
 FROM wishlist w
 JOIN editions e ON e.work_id = w.work_id
-JOIN copies c ON c.edition_id = e.id
+JOIN copies c   ON c.edition_id = e.id
 WHERE c.status = 'owned' AND w.status = 'wanted';
 ```
 
-Find books with no copy (works imported but not yet owned):
-```sql
-SELECT w.id, w.title, w.author_display
-FROM works w
-LEFT JOIN editions e ON e.work_id = w.id
-LEFT JOIN copies c ON c.edition_id = e.id
-GROUP BY w.id HAVING COUNT(c.id) = 0;
-```
-
-## Phase status (for orientation)
+## Phase status
 
 | Phase | What | Status |
 |-------|------|--------|
 | 1 | Catalog spine + lookup PWA | Done |
-| 2 | Capture inbox (this playbook) | Active |
+| 2 | Capture inbox (Drive transport) | Done — pivoted from Gmail (no attachment download) |
 | 3 | Obsidian linkage for notes | Not started |
 | 4 | Audiobook voice-memo → Whisper → notes | Not started |
 | 5 | Handwritten note OCR → Obsidian | Not started |
