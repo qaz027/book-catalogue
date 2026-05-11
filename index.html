@@ -69,65 +69,121 @@
     -webkit-appearance: none;
   }
   #q:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
-  #status {
-    font-size: 0.85rem;
-    color: var(--muted);
-    padding: 8px 0 0;
+  .tabs {
+    display: flex; gap: 4px; margin-top: 8px;
   }
-  main { padding: 12px 16px 32px; }
+  .tab {
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    -webkit-appearance: none;
+  }
+  .tab.active {
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  #status {
+    font-size: 0.8rem;
+    color: var(--muted);
+    padding: 6px 0 0;
+  }
+  main { padding: 12px 16px 40px; }
+  .section-head {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    font-weight: 600;
+    padding: 12px 4px 6px;
+  }
   .work {
+    display: flex;
+    gap: 12px;
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 14px 16px;
-    margin: 0 0 10px;
+    padding: 12px 14px;
+    margin: 0 0 8px;
   }
-  .title { font-weight: 600; font-size: 1.05rem; line-height: 1.3; }
-  .author { color: var(--muted); font-size: 0.95rem; margin-top: 2px; }
-  .meta { color: var(--muted); font-size: 0.8rem; margin-top: 4px; }
+  .cover {
+    flex: 0 0 auto;
+    width: 48px; height: 72px;
+    border-radius: 4px;
+    background: var(--border);
+    object-fit: cover;
+  }
+  .cover.empty {
+    background: linear-gradient(135deg, var(--border) 0%, transparent 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; color: var(--muted);
+  }
+  .work-body { flex: 1 1 auto; min-width: 0; }
+  .title { font-weight: 600; font-size: 1rem; line-height: 1.3; }
+  .author { color: var(--muted); font-size: 0.9rem; margin-top: 2px; }
+  .meta { color: var(--muted); font-size: 0.78rem; margin-top: 2px; }
   .copies {
-    margin-top: 10px;
-    display: flex; flex-direction: column; gap: 6px;
+    margin-top: 8px;
+    display: flex; flex-direction: column; gap: 5px;
   }
   .copy {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 0.9rem;
+    display: flex; align-items: center; gap: 6px;
+    font-size: 0.85rem;
     flex-wrap: wrap;
   }
   .badge {
     display: inline-block;
-    font-size: 0.75rem;
-    padding: 2px 8px;
+    font-size: 0.72rem;
+    padding: 1px 7px;
     border-radius: 999px;
     font-weight: 500;
+    white-space: nowrap;
   }
-  .badge.owned    { background: color-mix(in srgb, var(--owned) 18%, transparent);    color: var(--owned); }
-  .badge.borrowed { background: color-mix(in srgb, var(--borrowed) 18%, transparent); color: var(--borrowed); }
+  .badge.owned     { background: color-mix(in srgb, var(--owned) 18%, transparent);    color: var(--owned); }
+  .badge.borrowed  { background: color-mix(in srgb, var(--borrowed) 18%, transparent); color: var(--borrowed); }
   .badge.lost,
   .badge.sold,
-  .badge.returned { background: color-mix(in srgb, var(--bad) 18%, transparent); color: var(--bad); }
-  .badge.loaned-out { background: color-mix(in srgb, var(--borrowed) 18%, transparent); color: var(--borrowed); }
+  .badge.returned  { background: color-mix(in srgb, var(--bad) 18%, transparent);     color: var(--bad); }
+  .badge.loaned-out{ background: color-mix(in srgb, var(--borrowed) 18%, transparent); color: var(--borrowed); }
+  .badge.wanted    { background: color-mix(in srgb, var(--wishlist) 18%, transparent); color: var(--wishlist); }
+  .badge.already-owned { background: color-mix(in srgb, var(--owned) 18%, transparent); color: var(--owned); }
   .copy-where { color: var(--muted); }
   .empty {
     text-align: center;
     color: var(--muted);
     padding: 40px 16px;
-    font-size: 0.95rem;
+    font-size: 0.92rem;
   }
   .own-summary {
     display: inline-block;
-    font-size: 0.75rem;
-    padding: 2px 8px;
+    font-size: 0.72rem;
+    padding: 1px 7px;
     border-radius: 999px;
     background: color-mix(in srgb, var(--owned) 18%, transparent);
     color: var(--owned);
     font-weight: 500;
-    margin-left: 8px;
+    margin-left: 6px;
+    vertical-align: middle;
   }
   .own-summary.none {
     background: color-mix(in srgb, var(--muted) 15%, transparent);
     color: var(--muted);
   }
+  .wishlist-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin: 0 0 8px;
+  }
+  .wishlist-card .source { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+  .wishlist-card .source a { color: var(--accent); text-decoration: none; }
 </style>
 </head>
 <body>
@@ -135,6 +191,10 @@
   <h1>Book Catalogue</h1>
   <input id="q" type="search" placeholder="Search title or author..."
          autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+  <div class="tabs">
+    <button class="tab active" data-view="library">Library</button>
+    <button class="tab" data-view="wishlist">Wishlist</button>
+  </div>
   <div id="status">Loading database...</div>
 </header>
 <main id="results"></main>
@@ -145,8 +205,11 @@
   const $status  = document.getElementById('status');
   const $results = document.getElementById('results');
   const $q       = document.getElementById('q');
+  const $tabs    = document.querySelectorAll('.tab');
 
   let db;
+  let view = 'library';
+
   try {
     const SQL = await initSqlJs({
       locateFile: f => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/${f}`
@@ -157,91 +220,135 @@
     db = new SQL.Database(new Uint8Array(buf));
     const [{ values: [[wc]] }] = db.exec('SELECT COUNT(*) FROM works');
     const [{ values: [[cc]] }] = db.exec('SELECT COUNT(*) FROM copies');
-    $status.textContent = `${wc.toLocaleString()} works · ${cc.toLocaleString()} copies`;
+    const [{ values: [[wn]] }] = db.exec("SELECT COUNT(*) FROM wishlist WHERE status='wanted'");
+    $status.textContent = `${wc.toLocaleString()} works · ${cc.toLocaleString()} copies · ${wn.toLocaleString()} wanted`;
   } catch (e) {
     $status.textContent = `Failed to load: ${e.message}`;
     $status.style.color = 'var(--bad)';
     return;
   }
 
-  const fmtFTS = q => {
-    const tokens = q.trim().split(/\s+/)
-      .filter(t => t.length > 0)
-      .map(t => t.replace(/['"]/g, ''))
-      .filter(t => t.length > 0)
-      .map(t => `"${t}"*`);
-    return tokens.join(' ');
+  const escape = s => (s == null ? '' : String(s).replace(/[<>&"]/g,
+    ch => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[ch])));
+
+  const fmtFTS = q => q.trim().split(/\s+/).filter(Boolean)
+    .map(t => `"${t.replace(/['"]/g,'')}"*`).join(' ');
+
+  const queryRows = (stmt, params) => {
+    stmt.bind(params || []);
+    const rows = [];
+    while (stmt.step()) rows.push(stmt.getAsObject());
+    stmt.free();
+    return rows;
   };
 
-  const search = (q) => {
-    if (!q || q.trim().length < 2) { render([]); return; }
-    let rows;
-    try {
-      const stmt = db.prepare(`
-        SELECT w.id, w.title, w.subtitle, w.author_display, w.original_year,
-               w.series_name, w.series_position
-        FROM works w
-        JOIN works_fts f ON f.rowid = w.id
-        WHERE works_fts MATCH ?
-        ORDER BY rank
-        LIMIT 50
-      `);
-      stmt.bind([fmtFTS(q)]);
-      rows = [];
-      while (stmt.step()) rows.push(stmt.getAsObject());
-      stmt.free();
-    } catch (e) {
-      // FTS query parse failure (e.g. trailing operators) — fall back to LIKE
-      const like = `%${q}%`;
-      const stmt = db.prepare(`
-        SELECT id, title, subtitle, author_display, original_year, series_name, series_position
-        FROM works
-        WHERE title LIKE ? OR author_display LIKE ?
-        ORDER BY title LIMIT 50
-      `);
-      stmt.bind([like, like]);
-      rows = [];
-      while (stmt.step()) rows.push(stmt.getAsObject());
-      stmt.free();
-    }
-    if (!rows.length) { render([]); return; }
+  // --- Library view --------------------------------------------------------
+
+  const STATUS_ORDER = { owned: 0, borrowed: 1, 'loaned-out': 2, returned: 3, sold: 4, lost: 5 };
+
+  const attachCopies = (rows) => {
+    if (!rows.length) return;
     const ids = rows.map(r => r.id);
     const placeholders = ids.map(() => '?').join(',');
-    const copyStmt = db.prepare(`
-      SELECT c.id, c.edition_id, c.medium, c.status, c.borrowed_until,
-             c.acquired_date, c.notes,
-             e.format, e.work_id,
+    const stmt = db.prepare(`
+      SELECT c.id, c.edition_id, c.medium, c.status, c.borrowed_until, c.notes,
+             e.format, e.work_id, e.cover_url,
              l.name AS location, v.name AS vendor
       FROM copies c
       JOIN editions e ON e.id = c.edition_id
       LEFT JOIN locations l ON l.id = c.location_id
       LEFT JOIN vendors   v ON v.id = c.vendor_id
       WHERE e.work_id IN (${placeholders})
-      ORDER BY c.medium, c.status
     `);
-    copyStmt.bind(ids);
     const copiesByWork = {};
-    while (copyStmt.step()) {
-      const c = copyStmt.getAsObject();
+    const coverByWork = {};
+    queryRows(stmt, ids).forEach(c => {
       (copiesByWork[c.work_id] = copiesByWork[c.work_id] || []).push(c);
-    }
-    copyStmt.free();
-    rows.forEach(r => r.copies = copiesByWork[r.id] || []);
-    render(rows);
+      if (c.cover_url && !coverByWork[c.work_id]) coverByWork[c.work_id] = c.cover_url;
+    });
+    rows.forEach(r => {
+      r.copies = (copiesByWork[r.id] || []).sort((a, b) =>
+        (STATUS_ORDER[a.status] ?? 99) - (STATUS_ORDER[b.status] ?? 99));
+      r.cover_url = coverByWork[r.id];
+    });
   };
 
-  const render = (rows) => {
+  const searchLibrary = (q) => {
+    let rows;
+    try {
+      const stmt = db.prepare(`
+        SELECT w.id, w.title, w.subtitle, w.author_display, w.original_year,
+               w.series_name, w.series_position
+        FROM works w JOIN works_fts f ON f.rowid = w.id
+        WHERE works_fts MATCH ? ORDER BY rank LIMIT 50
+      `);
+      rows = queryRows(stmt, [fmtFTS(q)]);
+    } catch (e) {
+      const like = `%${q}%`;
+      const stmt = db.prepare(`
+        SELECT id, title, subtitle, author_display, original_year, series_name, series_position
+        FROM works WHERE title LIKE ? OR author_display LIKE ?
+        ORDER BY title LIMIT 50
+      `);
+      rows = queryRows(stmt, [like, like]);
+    }
+    attachCopies(rows);
     if (!rows.length) {
-      $results.innerHTML = $q.value.trim().length < 2
-        ? `<div class="empty">Type to search.</div>`
-        : `<div class="empty">No matches.<br><small>Not in your catalog — safe to buy.</small></div>`;
+      $results.innerHTML = `<div class="empty">No matches.<br><small>Not in your catalog — safe to buy.</small></div>`;
       return;
     }
     $results.innerHTML = rows.map(workCard).join('');
   };
 
-  const escape = s => (s == null ? '' : String(s).replace(/[<>&"]/g,
-    ch => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[ch])));
+  const browseLibrary = () => {
+    // Group works by location (joining via copies → editions → works)
+    const stmt = db.prepare(`
+      SELECT
+        COALESCE(l.name, '(no location set)') AS location,
+        w.id, w.title, w.subtitle, w.author_display, w.original_year,
+        w.series_name, w.series_position
+      FROM works w
+      JOIN editions e  ON e.work_id = w.id
+      JOIN copies   c  ON c.edition_id = e.id
+      LEFT JOIN locations l ON l.id = c.location_id
+      WHERE c.medium = 'physical' AND c.status = 'owned'
+      GROUP BY w.id, l.name
+      ORDER BY l.name, w.author_display, w.title
+    `);
+    const rows = queryRows(stmt);
+
+    if (!rows.length) {
+      // No owned physical books — show digital + recent additions
+      const recent = queryRows(db.prepare(`
+        SELECT id, title, subtitle, author_display, original_year,
+               series_name, series_position
+        FROM works ORDER BY id DESC LIMIT 30
+      `));
+      if (!recent.length) {
+        $results.innerHTML = `<div class="empty">Catalog is empty.<br><small>Run an importer or use the capture inbox.</small></div>`;
+        return;
+      }
+      attachCopies(recent);
+      $results.innerHTML =
+        `<div class="section-head">Recent additions</div>` +
+        recent.map(workCard).join('');
+      return;
+    }
+
+    // Bucket by location
+    const buckets = {};
+    rows.forEach(r => { (buckets[r.location] = buckets[r.location] || []).push(r); });
+    // Attach copies to all rows for badge display
+    attachCopies(rows);
+
+    let html = '';
+    for (const loc of Object.keys(buckets).sort()) {
+      const books = buckets[loc];
+      html += `<div class="section-head">${escape(loc)} · ${books.length}</div>`;
+      html += books.map(workCard).join('');
+    }
+    $results.innerHTML = html;
+  };
 
   const workCard = (w) => {
     const copies = w.copies || [];
@@ -252,13 +359,19 @@
     const series = w.series_name
       ? ` · ${escape(w.series_name)}${w.series_position ? ' #' + w.series_position : ''}`
       : '';
+    const cover = w.cover_url
+      ? `<img class="cover" src="${escape(w.cover_url)}" alt="" loading="lazy" referrerpolicy="no-referrer">`
+      : `<div class="cover empty">${escape((w.title || '?').slice(0,2).toUpperCase())}</div>`;
     return `
       <div class="work">
-        <div class="title">${escape(w.title)}${summary}</div>
-        ${w.subtitle ? `<div class="meta">${escape(w.subtitle)}</div>` : ''}
-        <div class="author">${escape(w.author_display || '—')}</div>
-        <div class="meta">${w.original_year ? escape(w.original_year) : ''}${series}</div>
-        ${copies.length ? `<div class="copies">${copies.map(copyRow).join('')}</div>` : ''}
+        ${cover}
+        <div class="work-body">
+          <div class="title">${escape(w.title)}${summary}</div>
+          ${w.subtitle ? `<div class="meta">${escape(w.subtitle)}</div>` : ''}
+          <div class="author">${escape(w.author_display || '—')}</div>
+          <div class="meta">${w.original_year ? escape(w.original_year) : ''}${series}</div>
+          ${copies.length ? `<div class="copies">${copies.map(copyRow).join('')}</div>` : ''}
+        </div>
       </div>
     `;
   };
@@ -280,14 +393,80 @@
     `;
   };
 
+  // --- Wishlist view -------------------------------------------------------
+
+  const searchWishlist = (q) => {
+    const like = q ? `%${q}%` : '%';
+    const stmt = db.prepare(`
+      SELECT wl.id, wl.title_raw, wl.author_raw, wl.source, wl.source_url,
+             wl.priority, wl.captured_at, wl.notes, wl.status, wl.work_id,
+             w.title  AS matched_title,
+             w.author_display AS matched_author,
+             (SELECT COUNT(*) FROM editions e JOIN copies c ON c.edition_id=e.id
+              WHERE e.work_id = wl.work_id AND c.status = 'owned') AS owned_count
+      FROM wishlist wl
+      LEFT JOIN works w ON w.id = wl.work_id
+      WHERE wl.status = 'wanted'
+        AND (wl.title_raw LIKE ? OR wl.author_raw LIKE ? OR w.title LIKE ? OR w.author_display LIKE ?)
+      ORDER BY wl.priority DESC, wl.captured_at DESC
+      LIMIT 100
+    `);
+    const rows = queryRows(stmt, [like, like, like, like]);
+    if (!rows.length) {
+      $results.innerHTML = `<div class="empty">${q ? 'No wishlist matches.' : 'Wishlist is empty.'}</div>`;
+      return;
+    }
+    $results.innerHTML = rows.map(wishlistCard).join('');
+  };
+
+  const wishlistCard = (w) => {
+    const title = w.matched_title || w.title_raw || '(untitled capture)';
+    const author = w.matched_author || w.author_raw || '';
+    const ownedBadge = w.owned_count > 0
+      ? `<span class="badge already-owned">Already owned</span>`
+      : `<span class="badge wanted">Wanted</span>`;
+    const sourceLine = w.source_url
+      ? `<a href="${escape(w.source_url)}" target="_blank" rel="noopener noreferrer">${escape(w.source || w.source_url)}</a>`
+      : (w.source ? escape(w.source) : '');
+    return `
+      <div class="wishlist-card">
+        <div class="title">${escape(title)} ${ownedBadge}</div>
+        ${author ? `<div class="author">${escape(author)}</div>` : ''}
+        ${sourceLine ? `<div class="source">${sourceLine}</div>` : ''}
+        ${w.notes ? `<div class="meta">${escape(w.notes)}</div>` : ''}
+        ${w.captured_at ? `<div class="meta">Captured ${escape(w.captured_at.split('T')[0] || w.captured_at)}</div>` : ''}
+      </div>
+    `;
+  };
+
+  // --- Dispatch ------------------------------------------------------------
+
+  const update = () => {
+    const q = $q.value.trim();
+    if (view === 'library') {
+      if (q.length < 2) browseLibrary();
+      else searchLibrary(q);
+    } else {
+      searchWishlist(q);
+    }
+  };
+
   let timer;
   $q.addEventListener('input', () => {
     clearTimeout(timer);
-    timer = setTimeout(() => search($q.value), 150);
+    timer = setTimeout(update, 150);
   });
+  $tabs.forEach(btn => btn.addEventListener('click', () => {
+    $tabs.forEach(b => b.classList.toggle('active', b === btn));
+    view = btn.dataset.view;
+    $q.placeholder = view === 'wishlist'
+      ? 'Search wishlist...'
+      : 'Search title or author...';
+    update();
+  }));
 
-  // Auto-focus on desktop only (not mobile, where it pops the keyboard immediately)
   if (!matchMedia('(pointer: coarse)').matches) $q.focus();
+  update();
 })();
 </script>
 </body>
