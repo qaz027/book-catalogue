@@ -113,7 +113,7 @@ d. **Build a JSON batch:**
 ]
 ```
 
-e. **Run** `python3 scripts/add_book_batch.py < batch.json` (heredoc the JSON or write it to a temp file). The script does ISBN lookup, upserts works/editions, inserts copies, returns a JSON summary.
+e. **Run** `python3 scripts/add_book_batch.py < batch.json` (heredoc the JSON or write it to a temp file). The script enriches each entry: if an ISBN is given it does ISBN lookup; otherwise it falls back to title+author lookup against Open Library (Google Books fallback) and fills in `original_year`, `cover_url`, and sometimes ISBN/publisher/pages automatically. User-provided fields always win. The script then upserts works/editions, inserts copies, returns a JSON summary.
 
 f. **Move locally:** `mv inbox/incoming/<file> inbox/processed/<YYYY-MM-DD>/<file>` (mkdir as needed).
 
