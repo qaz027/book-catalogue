@@ -19,7 +19,9 @@ scripts/_common.py                    Shared upsert helpers
 scripts/add_book.py                   Interactive single-book entry
 scripts/add_book_batch.py             Non-interactive bulk insert (JSON in, JSON out)
 scripts/add_to_wishlist.py            Bulk wishlist insert (JSON in, JSON out)
-scripts/move_copies.py                Relocate existing copies — UPDATE, not new copy
+scripts/move_copies.py                Relocate existing copies — UPDATE location_id, not new copy
+scripts/change_status.py              Change copy status (loaned-out, sold, lost, returned, etc.)
+scripts/enrich_metadata.py            Backfill missing year/publisher/ISBN/cover via Open Library + Google Books
 scripts/import_goodreads.py           Goodreads CSV importer
 scripts/import_amazon_kindle.py       Amazon Kindle library importer
 inbox/incoming/                       Files downloaded from Drive, awaiting processing (gitignored)
@@ -190,6 +192,33 @@ Commit and push? (Y/n)
 ```
 
 If yes: `git add library.db inbox/.processed_drive_ids.txt`, commit with a clear message, then ask before `git push`.
+
+## When the user mentions a status change conversationally
+
+The user will sometimes say things like "I lent Pattern Recognition to a colleague" or "I sold my copy of Dune" or "I borrowed The Hobbit from Libby until June 1." Route these through `scripts/change_status.py` — don't ask them to put it in a Drive folder. The script accepts the same shape as `move_copies.py`:
+
+| User phrase                                  | new_status     | Extra fields                          |
+|----------------------------------------------|----------------|---------------------------------------|
+| "I lent X to Y"                              | `loaned-out`   | `loaned_to: "Y"`                      |
+| "Y returned X"                               | `owned`        | `note: "returned by Y"`               |
+| "I borrowed X from Libby until 2026-06-01"   | `borrowed`     | `borrowed_until: "2026-06-01"`        |
+| "I returned X to the library"                | `returned`     |                                       |
+| "Sold X"                                     | `sold`         |                                       |
+| "Lost X" / "Can't find X anymore"            | `lost`         |                                       |
+| "Found X" (was lost)                         | `owned`        | `note: "found again"`                 |
+
+JSON for the script:
+```json
+[
+  {"title": "Pattern Recognition and Machine Learning",
+   "new_status": "loaned-out", "loaned_to": "Sarah",
+   "note": "borrowed for ML reading group"}
+]
+```
+
+If the user has multiple copies of the same title, the script returns `ambiguous` with the candidate list — ask the user which copy, then resubmit with `copy_id`.
+
+For Libby (`borrowed`), the script auto-clears `borrowed_until` when the user later transitions back to `owned` or `returned`, so audit trails stay clean.
 
 ## Important rules
 
