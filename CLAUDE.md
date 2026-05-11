@@ -19,6 +19,7 @@ scripts/_common.py                    Shared upsert helpers
 scripts/add_book.py                   Interactive single-book entry
 scripts/add_book_batch.py             Non-interactive bulk insert (JSON in, JSON out)
 scripts/add_to_wishlist.py            Bulk wishlist insert (JSON in, JSON out)
+scripts/move_copies.py                Relocate existing copies — UPDATE, not new copy
 scripts/import_goodreads.py           Goodreads CSV importer
 scripts/import_amazon_kindle.py       Amazon Kindle library importer
 inbox/incoming/                       Files downloaded from Drive, awaiting processing (gitignored)
@@ -35,9 +36,10 @@ The user keeps a folder in Google Drive called **`Book Catalogue`** with these s
 
 ```
 Book Catalogue/
-  shelf/        photos of one or more book spines on a shelf
+  shelf/        photos of one or more book spines on a shelf (new captures)
   wishlist/     X screenshots, photos of covers in a store, anything to remember
   add/          one specific newly-acquired book in clear focus
+  move/         photos of already-catalogued books in their NEW location
   memo/         voice memos from audiobook drives  (Phase 4 — defer)
 ```
 
@@ -58,7 +60,7 @@ If `inbox/.drive_root_id` exists, read the cached folder ID. Otherwise:
 
 ### 2. List candidate files
 
-For each tag folder (`shelf`, `wishlist`, `add` — skip `memo`):
+For each tag folder (`shelf`, `wishlist`, `add`, `move` — skip `memo`):
 - Use `search_files` with `'<folder-id>' in parents and trashed = false` to list children
 - Filter out anything whose Drive file ID is already in `inbox/.processed_drive_ids.txt`
 
@@ -138,6 +140,37 @@ a. **Extract** title, author, ISBN if visible. Look up the ISBN explicitly via O
 b. **Ask** about medium (default physical), location/vendor, condition, acquired_date.
 
 c. **Insert** via `add_book_batch.py`.
+
+#### `move/` — relocate already-catalogued books
+
+Use this when books that already exist in `copies` have physically moved (shelf → box, box → different shelf, etc.). This is an UPDATE on `copies.location_id`, NOT a new copy.
+
+a. **Get the destination.** Look first at the Drive filename (`storage_box_a.jpg` → "Storage Box A"). If unclear, ask the user.
+
+b. **Extract titles from the photo** the same way you do for `shelf/`. You don't need authors for resolution most of the time — title is usually enough.
+
+c. **Build a move JSON list** and run `python3 scripts/move_copies.py < moves.json`:
+```json
+[
+  {"title": "Dune", "author": "Frank Herbert", "destination": "Storage Box A",
+   "source_image": "inbox/incoming/2026-05-10_move_a3f4c2.jpg"},
+  {"title": "Children of Time", "destination": "Storage Box A"}
+]
+```
+
+d. **Handle the three result types** from the script's output:
+
+- **`status: "ok"`** — moved. Show "from → to" in the summary.
+- **`status: "ambiguous"`** — multiple copies match (e.g., user owns two paperbacks of Dune on different shelves). The result includes a `candidates` array with each copy's id, current location, and format. Show this to the user, ask which one they moved, then re-submit a JSON entry with `copy_id` set to the chosen one.
+- **`status: "not_found"`** — book in the photo isn't in the catalog. Ask the user:
+  > "I saw 'Some Book' in the box but it's not in your catalog. Add it as a new copy at 'Storage Box A', or skip?"
+  - If add: build a JSON entry for `add_book_batch.py` with `location: "<destination>"` and run that.
+  - If skip: move on.
+- **`status: "same_location"`** — the copy is already at that location (re-submitted by accident). No-op; report and move on.
+
+e. **Audit trail.** `move_copies.py` appends a dated line to `copies.notes` for each move (`[2026-05-10] moved 'book shelf' → 'Storage Box A'`). Don't add additional manual notes unless the user explicitly asks.
+
+f. **Move file + record processed ID** as in shelf step f-g.
 
 #### `memo/` — voice memo
 

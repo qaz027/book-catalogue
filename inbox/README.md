@@ -7,12 +7,15 @@ Phone captures arrive via **Google Drive**, get downloaded here, processed on th
 1. Take a photo (or for `[memo]` later, record a voice memo).
 2. Share → **Save to Drive** → into the appropriate subfolder of `Book Catalogue/`:
 
-| Drive subfolder           | What goes there                                            | Routes to                  |
-|---------------------------|------------------------------------------------------------|----------------------------|
-| `Book Catalogue/shelf/`   | Photos of one or more book spines on a shelf               | `copies` table (physical)  |
-| `Book Catalogue/wishlist/`| Books you want (X screenshots, photos of covers, notes)    | `wishlist` table           |
-| `Book Catalogue/add/`     | One specific newly-acquired book in clear focus            | `copies` table             |
-| `Book Catalogue/memo/`    | Voice memo from an audiobook drive (Phase 4 — deferred)    | Obsidian (deferred)        |
+| Drive subfolder           | What goes there                                            | Routes to                          |
+|---------------------------|------------------------------------------------------------|------------------------------------|
+| `Book Catalogue/shelf/`   | Photos of one or more book spines on a shelf (new captures)| `copies` table (physical)          |
+| `Book Catalogue/wishlist/`| Books you want (X screenshots, photos of covers, notes)    | `wishlist` table                   |
+| `Book Catalogue/add/`     | One specific newly-acquired book in clear focus            | `copies` table                     |
+| `Book Catalogue/move/`    | Books **already in the catalog** photographed in their NEW location | UPDATE `copies.location_id` |
+| `Book Catalogue/memo/`    | Voice memo from an audiobook drive (Phase 4 — deferred)    | Obsidian (deferred)                |
+
+For `move/`, name the file after the destination if you can (e.g., `storage_box_a.jpg`) — Claude reads the filename as the destination hint. Otherwise it'll just ask.
 
 If those folders don't exist yet, Claude will create them on the first run.
 
