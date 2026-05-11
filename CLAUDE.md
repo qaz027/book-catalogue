@@ -22,6 +22,7 @@ scripts/add_to_wishlist.py            Bulk wishlist insert (JSON in, JSON out)
 scripts/move_copies.py                Relocate existing copies — UPDATE location_id, not new copy
 scripts/change_status.py              Change copy status (loaned-out, sold, lost, returned, etc.)
 scripts/enrich_metadata.py            Backfill missing year/publisher/ISBN/cover via Open Library + Google Books
+scripts/report.py                     Snapshot of catalog stats + useful flags (already-owned wishlist, overdue borrows, missing metadata)
 scripts/import_goodreads.py           Goodreads CSV importer
 scripts/import_amazon_kindle.py       Amazon Kindle library importer
 inbox/incoming/                       Files downloaded from Drive, awaiting processing (gitignored)
@@ -116,6 +117,8 @@ d. **Build a JSON batch:**
 ```
 
 e. **Run** `python3 scripts/add_book_batch.py < batch.json` (heredoc the JSON or write it to a temp file). The script enriches each entry: if an ISBN is given it does ISBN lookup; otherwise it falls back to title+author lookup against Open Library (Google Books fallback) and fills in `original_year`, `cover_url`, and sometimes ISBN/publisher/pages automatically. User-provided fields always win. The script then upserts works/editions, inserts copies, returns a JSON summary.
+
+**Duplicate handling:** by default the script SKIPS inserting a copy if one already exists at the same edition + location + medium (physical) or same edition + vendor (digital/audio). The result will have `inserted: false`, `duplicate_skipped: true`, and `duplicate_of_copy_id: <id>`. Surface skipped duplicates to the user in the summary — e.g., "3 books were already at that location, skipped." Only re-run with `--allow-duplicates` if the user confirms they genuinely own multiple identical copies at that spot.
 
 f. **Move locally:** `mv inbox/incoming/<file> inbox/processed/<YYYY-MM-DD>/<file>` (mkdir as needed).
 

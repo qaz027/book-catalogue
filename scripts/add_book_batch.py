@@ -189,6 +189,39 @@ def process_entry(conn, entry: dict, dry_run: bool) -> dict:
         trace = f"Imported from {entry['source_image']}"
         notes = f"{notes}\n{trace}" if notes else trace
 
+    # Duplicate detection: skip if a copy already exists at the same
+    # edition + location + medium (physical), or edition + vendor (digital/audio).
+    allow_dupes = entry.get("allow_duplicate") or False
+    dup_row = None
+    if medium == "physical" and loc_id is not None:
+        dup_row = conn.execute(
+            """SELECT id FROM copies WHERE edition_id = ? AND medium = 'physical'
+               AND location_id = ?""",
+            (edition_id, loc_id),
+        ).fetchone()
+    elif medium in ("digital", "audio") and vend_id is not None:
+        dup_row = conn.execute(
+            """SELECT id FROM copies WHERE edition_id = ? AND medium = ? AND vendor_id = ?""",
+            (edition_id, medium, vend_id),
+        ).fetchone()
+
+    if dup_row and not allow_dupes:
+        return {
+            "ok": True,
+            "work_id": work_id,
+            "edition_id": edition_id,
+            "copy_id": None,
+            "title": title,
+            "author": author_display,
+            "format": fmt,
+            "medium": medium,
+            "work_created": work_created,
+            "edition_created": ed_created,
+            "inserted": False,
+            "duplicate_skipped": True,
+            "duplicate_of_copy_id": dup_row[0],
+        }
+
     cur = conn.execute(
         """INSERT INTO copies(edition_id, medium, location_id, vendor_id, vendor_book_id,
                               file_path, condition, status, borrowed_until,
@@ -219,6 +252,8 @@ def process_entry(conn, entry: dict, dry_run: bool) -> dict:
         "medium": medium,
         "work_created": work_created,
         "edition_created": ed_created,
+        "inserted": True,
+        "duplicate_skipped": False,
     }
 
 
@@ -228,6 +263,9 @@ def main() -> None:
     p.add_argument("--input", type=Path, help="JSON file path (default: stdin)")
     p.add_argument("--db", type=Path, default=DEFAULT_DB)
     p.add_argument("--dry-run", action="store_true")
+    p.add_argument("--allow-duplicates", action="store_true",
+                   help="Insert even if a copy at the same edition+location/vendor exists. "
+                        "Default: skip duplicates and report them in the result.")
     args = p.parse_args()
 
     raw = args.input.read_text(encoding="utf-8") if args.input else sys.stdin.read()
@@ -245,10 +283,13 @@ def main() -> None:
     conn = open_db(args.db)
     results = []
     stats = {"total": len(entries), "ok": 0, "failed": 0,
-             "works_created": 0, "editions_created": 0}
+             "works_created": 0, "editions_created": 0,
+             "copies_inserted": 0, "duplicates_skipped": 0}
 
     for entry in entries:
         try:
+            if args.allow_duplicates:
+                entry["allow_duplicate"] = True
             r = process_entry(conn, entry, args.dry_run)
         except Exception as e:
             r = {"ok": False, "reason": str(e), "entry": entry}
@@ -257,6 +298,8 @@ def main() -> None:
             stats["ok"] += 1
             if r.get("work_created"): stats["works_created"] += 1
             if r.get("edition_created"): stats["editions_created"] += 1
+            if r.get("inserted"): stats["copies_inserted"] += 1
+            if r.get("duplicate_skipped"): stats["duplicates_skipped"] += 1
         else:
             stats["failed"] += 1
 
