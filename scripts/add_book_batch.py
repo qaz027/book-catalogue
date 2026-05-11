@@ -52,17 +52,42 @@ from _common import (
 )
 
 
-def fetch_metadata(isbn: str | None, asin: str | None) -> dict:
-    """Best-effort enrichment via add_book.py's lookup helpers."""
-    if not isbn and not asin:
-        return {}
-    try:
-        from add_book import lookup_isbn  # reuse the same lookup
-    except Exception:
-        return {}
+def fetch_metadata(isbn: str | None, asin: str | None,
+                   title: str | None = None, author: str | None = None) -> dict:
+    """Best-effort enrichment. Tries ISBN lookup first; falls back to
+    title+author search (Open Library, then Google Books) when no ISBN.
+    Returns a dict with normalised keys: title, subtitle, authors,
+    publishers, published_year, pages, subjects, cover_url, isbn_13,
+    isbn_10, source."""
+    # ISBN path (most reliable)
     if isbn:
-        rec = lookup_isbn(isbn)
-        return rec or {}
+        try:
+            from add_book import lookup_isbn
+        except Exception:
+            return {}
+        return lookup_isbn(isbn) or {}
+    # Title+author path
+    if title:
+        try:
+            from enrich_metadata import lookup as lookup_by_title_author
+        except Exception:
+            return {}
+        rec = lookup_by_title_author(title, author or None)
+        if not rec:
+            return {}
+        return {
+            "title":          rec.get("title"),
+            "subtitle":       None,
+            "authors":        rec.get("authors") or [],
+            "publishers":     [rec["publisher"]] if rec.get("publisher") else [],
+            "published_year": rec.get("first_publish_year"),
+            "pages":          rec.get("pages"),
+            "subjects":       rec.get("subjects") or [],
+            "cover_url":      rec.get("cover_url"),
+            "isbn_13":        rec.get("isbn_13"),
+            "isbn_10":        rec.get("isbn_10"),
+            "source":         rec.get("source"),
+        }
     return {}
 
 
@@ -82,8 +107,19 @@ def process_entry(conn, entry: dict, dry_run: bool) -> dict:
     asin = entry.get("asin") or None
     isbn_13, isbn_10 = normalise_isbn_pair(isbn)
 
-    # Enrich from external lookup, but user-supplied fields override
-    looked_up = fetch_metadata(isbn_13 or isbn_10, asin)
+    # Enrich from external lookup, but user-supplied fields override.
+    # When no ISBN is provided, fall back to title+author search.
+    looked_up = fetch_metadata(
+        isbn_13 or isbn_10, asin,
+        title=entry.get("title"),
+        author=entry.get("author") or entry.get("authors"),
+    )
+
+    # Adopt looked-up ISBN if the user didn't supply one
+    if not isbn_13 and looked_up.get("isbn_13"):
+        isbn_13 = looked_up["isbn_13"]
+    if not isbn_10 and looked_up.get("isbn_10"):
+        isbn_10 = looked_up["isbn_10"]
 
     title = entry.get("title") or looked_up.get("title")
     if not title:
