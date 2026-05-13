@@ -1,95 +1,201 @@
 # Book Catalogue
 
-A personal database of every book I own — physical and digital, across all vendors and shelves — plus a "want to buy" wishlist. Designed so I can check on my phone before buying whether I already own a book.
+A personal database of every book I own — physical and digital, across all vendors and shelves — plus a wishlist of books I want. Designed to answer one question from my phone: **"am I about to buy a book I already own?"**
 
-**Live lookup:** https://qaz027.github.io/book-catalogue/
+**Live lookup (any device, read-only):** <https://qaz027.github.io/book-catalogue/>
+
+---
+
+## How the system works (in one picture)
+
+```
+   ┌─────────────────────────────────────────────────────────────────┐
+   │                                                                 │
+   │   ┌──────────┐                                                  │
+   │   │  Phone   │  1. take photo → share to Google Drive           │
+   │   └────┬─────┘                                                  │
+   │        │                                                        │
+   │        ▼                                                        │
+   │   ┌────────────────────────────────────────┐                    │
+   │   │  Google Drive: Book Catalogue/         │  staging only      │
+   │   │    shelf/ wishlist/ add/ move/ memo/   │                    │
+   │   └────┬───────────────────────────────────┘                    │
+   │        │                                                        │
+   │        │  2. desktop Claude pulls via MCP                       │
+   │        ▼                                                        │
+   │   ┌─────────────────────────────────────────┐                   │
+   │   │  T7 SSD working copy:                   │  source of truth  │
+   │   │  /media/quimbano/T7/Projects/           │                   │
+   │   │  Book_Catalogue/                        │                   │
+   │   │    ├── library.db   (SQLite catalog)    │                   │
+   │   │    ├── scripts/     (Python tooling)    │                   │
+   │   │    ├── inbox/       (downloaded files)  │                   │
+   │   │    └── ...                              │                   │
+   │   └────┬────────────────────────────────────┘                   │
+   │        │                                                        │
+   │        │  3. git push                                           │
+   │        ▼                                                        │
+   │   ┌─────────────────────────────────────────┐                   │
+   │   │  GitHub: qaz027/book-catalogue          │  sync + hosting   │
+   │   │    triggers Pages rebuild               │                   │
+   │   └────┬────────────────────────────────────┘                   │
+   │        │                                                        │
+   │        │  4. phone refresh                                      │
+   │        ▼                                                        │
+   │   ┌──────────┐                                                  │
+   │   │  PWA     │  qaz027.github.io/book-catalogue                 │
+   │   └──────────┘                                                  │
+   │                                                                 │
+   └─────────────────────────────────────────────────────────────────┘
+```
+
+**Three storage layers, each with one job:**
+
+| Layer | Path / URL | Role |
+|---|---|---|
+| **T7 SSD** | `/media/quimbano/T7/Projects/Book_Catalogue/` | Local working copy on this Linux machine. The only place edits happen. **Not in Dropbox.** |
+| **GitHub** | <https://github.com/qaz027/book-catalogue> | Sync between computers. Public repo. Also hosts the PWA via GitHub Pages. |
+| **Google Drive** | `Book Catalogue/` folder in your Drive | Phone capture staging only. Photos land here from the phone; Claude downloads them to the T7 working copy for processing. The catalog itself doesn't live here. |
+
+Dropbox is not involved.
+
+---
+
+## Daily usage
+
+### Look something up (phone, on the move)
+
+Open <https://qaz027.github.io/book-catalogue/> in a browser, or install it as a home-screen PWA. Search by title or author. **Library tab** shows what you own; **Wishlist tab** shows what you've flagged to buy. Already-owned wishlist entries surface a red flag so you don't double-buy.
+
+### Add a single book from the desktop
+
+```bash
+python3 scripts/add_book.py --isbn 9780441013593
+# or just: python3 scripts/add_book.py  (interactive prompt)
+```
+
+### Add a shelf of books from the phone
+
+1. Take a photo of the shelf (spines visible)
+2. Share → Save to Drive → `Book Catalogue/shelf/`
+3. On the Linux machine, open Claude Code in `/media/quimbano/T7/Projects/Book_Catalogue/`
+4. Tell Claude: **"Process the inbox."**
+
+Claude pulls the photo from Drive, extracts the book list with vision, asks you to confirm/correct, inserts into `library.db`, and offers to commit + push. The full playbook is in `CLAUDE.md`.
+
+### Other phone-capture flows
+
+| Drive subfolder | What goes there |
+|---|---|
+| `Book Catalogue/shelf/` | Multiple books on a shelf |
+| `Book Catalogue/wishlist/` | X screenshots, photos of covers in a store, anything to remember |
+| `Book Catalogue/add/` | One specific newly-acquired book |
+| `Book Catalogue/move/` | Already-catalogued books photographed in their **new** location (filename = destination, e.g. `storage_box_a.jpg`) |
+| `Book Catalogue/memo/` | Voice memos from audiobook drives — **deferred to Phase 4, not yet processed** |
+
+### Tell Claude about a status change in conversation
+
+You don't need to upload anything — just say:
+
+> "I lent Pattern Recognition to Sarah."
+> "Sold my paperback of Dune."
+> "Borrowed The Hobbit from Libby until 2026-06-01."
+
+Claude routes these through `scripts/change_status.py`.
+
+### Bulk imports (vendor exports)
+
+Drop the file into `data/raw/` (gitignored — your private exports never hit the public repo):
+
+```bash
+python3 scripts/import_goodreads.py      data/raw/goodreads_library_export.csv
+python3 scripts/import_amazon_kindle.py  data/raw/amazon_kindle.csv
+```
+
+Always run with `--dry-run` first to see counts before writing.
+
+### Get a snapshot of the catalog
+
+```bash
+python3 scripts/report.py
+```
+
+Totals, by location, recent additions, plus useful flags: overdue Libby borrows, wishlist entries you already own, books currently loaned out, works missing metadata.
+
+---
 
 ## Repo layout
 
 ```
-library.db              SQLite catalog (committed)
-schema.sql              Source of truth for the schema
-scripts/                Python ingestion + maintenance scripts
-inbox/                  Phone captures (incoming/processed) — gitignored
-data/raw/               Vendor exports (gitignored, private)
-index.html, manifest.json   PWA search UI (served by GitHub Pages)
-CLAUDE.md               Processing playbook for Claude Code
+README.md                    ← you are here
+STATUS.md                    ← handoff doc for session boundaries
+CLAUDE.md                    ← playbook auto-loaded by Claude Code
+schema.sql                   ← source of truth for the DB schema
+library.db                   ← SQLite catalog (committed)
+index.html, manifest.json    ← PWA search UI (served by GitHub Pages)
+scripts/
+  init_db.py                 ← build/refresh library.db from schema
+  add_book.py                ← interactive single-book entry
+  add_book_batch.py          ← JSON-driven bulk insert (used by inbox processing)
+  add_to_wishlist.py         ← bulk wishlist insert
+  move_copies.py             ← relocate existing copies (UPDATE, not new copy)
+  change_status.py           ← lifecycle: loaned-out / sold / lost / returned / borrowed
+  enrich_metadata.py         ← backfill year/publisher/ISBN/cover from Open Library + Google Books
+  import_goodreads.py        ← Goodreads CSV importer
+  import_amazon_kindle.py    ← Amazon Kindle export importer
+  report.py                  ← snapshot + flag report
+  _common.py                 ← shared helpers (DB connect, upserts, normalisation)
+inbox/
+  incoming/                  ← files downloaded from Drive (gitignored)
+  processed/<YYYY-MM-DD>/    ← post-processing archive (gitignored)
+  .processed_drive_ids.txt   ← dedup state (committed; multi-machine clones share it)
+  .drive_root_id             ← cached Drive folder ID (committed)
+data/raw/                    ← vendor exports (gitignored)
 ```
 
-## Workflow
+---
 
-### On a new computer
+## Cross-machine workflow
+
+The T7 SSD is *this* Linux machine. On any other computer:
 
 ```bash
 git clone https://github.com/qaz027/book-catalogue.git ~/Projects/Book_Catalogue
 cd ~/Projects/Book_Catalogue
-python3 scripts/init_db.py    # only needed if library.db is missing
+# stdlib-only Python, no pip install needed
+python3 scripts/report.py
 ```
 
-No external Python deps — stdlib only.
+You can do desktop work from any clone. Phone captures via Drive still work the same way — the playbook in `CLAUDE.md` handles per-machine state via `inbox/.drive_root_id` and `inbox/.processed_drive_ids.txt` (both committed).
 
-### Looking up books (any device)
-
-Open https://qaz027.github.io/book-catalogue/. Search by title or author. Results show whether you already own the book and in what format(s).
-
-### Adding books from the desktop (one at a time)
+To save changes back:
 
 ```bash
-python3 scripts/add_book.py                  # interactive prompt
-python3 scripts/add_book.py --isbn 9780441013593
+git add library.db inbox/.processed_drive_ids.txt
+git commit -m "..."
+git push       # triggers a Pages rebuild in ~30s
 ```
 
-### Adding books from the desktop (bulk imports)
+---
 
-```bash
-python3 scripts/import_goodreads.py     data/raw/goodreads_library_export.csv
-python3 scripts/import_amazon_kindle.py data/raw/amazon_kindle.csv
-```
+## Data model in one paragraph
 
-Drop your raw exports into `data/raw/` (gitignored). The Goodreads importer creates physical copies for any row with `Owned Copies >= 1` at a placeholder location `Goodreads import (review)` for you to reshelve later. The Amazon importer creates digital copies linked to the `Amazon Kindle` vendor.
+`works` is the abstract book (Dune by Frank Herbert). `editions` is a specific publication of a work (1990 Ace paperback ISBN ..., or the Kindle edition ASIN ...). `copies` is what you actually own or borrow — one row per physical book on a shelf, one row per digital license at a vendor, one row per Libby loan. A copy points at an edition, an edition points at a work. `wishlist` is separate; entries can be linked to a `work_id` (when matched) or kept as raw text (when not yet identified). Full schema in `schema.sql`.
 
-### Adding books from the phone (Phase 2 capture inbox)
-
-Take a photo on your phone, share it to **Google Drive**, save it into the appropriate subfolder of a top-level folder called `Book Catalogue`:
-
-| Drive subfolder            | What goes there                                            |
-|----------------------------|------------------------------------------------------------|
-| `Book Catalogue/shelf/`    | Photos of one or more book spines on a shelf               |
-| `Book Catalogue/wishlist/` | Books you want — X screenshots, photos of covers, notes    |
-| `Book Catalogue/add/`      | One specific newly-acquired book in clear focus            |
-| `Book Catalogue/memo/`     | Voice memos from audiobook drives (Phase 4 — deferred)     |
-
-If the folders don't exist yet, Claude will create them on first run.
-
-Then, on the desktop, open Claude Code in this repo and tell it:
-
-> Process the inbox.
-
-Claude will list new files in those Drive folders, download them via the Drive MCP, view each image, ask you to confirm the extracted books, and route the captures into the catalog or wishlist. Drive file IDs already processed are tracked in `inbox/.processed_drive_ids.txt` (committed) so reruns are idempotent. See `CLAUDE.md` for the exact playbook.
-
-### Saving changes
-
-```bash
-git add library.db
-git commit -m "Add 12 books from living room shelf 3"
-git push
-```
-
-A push triggers a GitHub Pages rebuild (~30 seconds). Reload the PWA on your phone to see the new books.
+---
 
 ## Build phases
 
 | Phase | What | Status |
-|-------|------|--------|
+|---|---|---|
 | 1 | Catalog spine + lookup PWA | Done |
-| 2 | Capture inbox (phone email → desktop processing) | Done |
-| 3 | Obsidian linkage for notes | Not started |
+| 2 | Drive capture inbox + processing playbook | Done |
+| 2.5 | Move workflow (relocate existing copies) | Done |
+| 2.7 | Status changes, enrichment, dedup, report, UI polish | Done |
+| **2.8** | **Bulk imports (Goodreads, Kindle) with overlap-aware dedup** | **Next — see STATUS.md** |
+| 3 | Obsidian linkage for per-book notes | Not started |
 | 4 | Audiobook voice memo → Whisper → Obsidian | Not started |
 | 5 | Handwritten note OCR → Obsidian | Not started |
 
-## Architecture decisions
-
-- **SQLite committed to git** — single source of truth, multi-machine sync via GitHub, full version history of every change.
-- **Phone is capture-only.** Phone never edits the DB directly. Captures land in `inbox/` and the desktop processes them under your supervision.
-- **Work → Edition → Copy.** A `work` is the abstract book (Dune by Herbert); an `edition` is a specific ISBN/format; a `copy` is the actual instance you own. Lets the same work coexist as a paperback and a Kindle edition without confusion.
-- **GitHub Pages over the same `library.db`** — the static search page reads the committed DB via sql.js in the browser. No backend, no hosting bill, no separate API.
+For the latest "where did we leave off?" see **`STATUS.md`**.
+For the Claude Code processing playbook, see **`CLAUDE.md`**.
