@@ -1,0 +1,433 @@
+decision,notes,category,title,author,n_copies,my_rating,goodreads_shelf,goodreads_title,flag,work_id
+,,(uncategorized),Graph Paper Notebook,—,1,,,,P5 bad/uncertain identification,161
+,,(uncategorized),"Modeling (cropped — blue spine ""—eling"")",,1,,,,P5 bad/uncertain identification,230
+,,(uncategorized),Pennington (?),,1,,,,P5 bad/uncertain identification,245
+,,(uncategorized),Six Feynman... (?),,1,,,,P5 bad/uncertain identification,286
+,,(uncategorized),Student Solutions Manual (Excel 2013 / DiffEq),,1,,,,,302
+,,(uncategorized),The 5 Conflicts (cropped — top horizontal stack),,1,,,,P5 bad/uncertain identification,312
+,,Business: Strategy & Management,Anatomy of the Swipe,Ahmed Siddiqui,1,,,,,73
+,,Business: Strategy & Management,Bulletproof Problem Solving,"Charles Conn, Robert McLean",1,,to-read,Bulletproof Problem Solving: The One Skill That Changes Everything,,92
+,,Business: Strategy & Management,Coming Apart,Charles Murray,1,,currently-reading,"Coming Apart: The State of White America, 1960-2010",,107
+,,Business: Strategy & Management,Conspiracies of the Ruling Class,Lawrence B. Lindsey,1,,,,,33
+,,Business: Strategy & Management,Ethics in Practice,Harvard Business Review,1,,,,,132
+,,Business: Strategy & Management,High Output Management,Andrew S. Grove,1,,to-read,High Output Management,,167
+,,Business: Strategy & Management,How to Write a Great Business Plan,William A. Sahlman,1,4,read,How to Write a Great Business Plan (Harvard Business Review Classics),,179
+,,Business: Strategy & Management,"Identifying Project Risk, 2e",Tom Kendrick,1,,,,,181
+,,Business: Strategy & Management,Last Stands: Why Soldiers Fight When All Is Lost,Michael Walsh,1,,,,,206
+,,Business: Strategy & Management,Liberty and Tyranny,Mark R. Levin,1,,,,,211
+,,Business: Strategy & Management,Sol Price: Retail Revolutionary & Social Innovator,Robert E. Price,1,,,,,287
+,,Business: Strategy & Management,Startup CXO,Matt Blumberg,1,,,,,293
+,,Business: Strategy & Management,The Anduril Thesis,"Kyle Harrison, Sachin Maini",1,,,,,319
+,,Business: Strategy & Management,The Lean Startup,Eric Ries,1,,,,,364
+,,Business: Strategy & Management,The Lessons of History,Will & Ariel Durant,1,,,,,365
+,,Business: Strategy & Management,The Only Way to Win,Jim Loehr,1,,,,,379
+,,Business: Strategy & Management,The Road to Serfdom,F.A. Hayek,1,,,,,387
+,,Business: Strategy & Management,The Ruling Class,Angelo M. Codevilla,2,,,,P3 2 physical copies,388
+,,Business: Strategy & Management,The Startup Owner's Manual,"Steve Blank, Bob Dorf",1,,,,,394
+,,Business: Strategy & Management,The Three Laws of Performance,"Steve Zaffron, Dave Logan",1,5,read,The Three Laws of Performance: Rewriting the Future of Your Organization and Your Life (J-B Warren Bennis Series),,399
+,,Business: Strategy & Management,Understanding Michael Porter,Joan Magretta,1,,,,,421
+,,Business: Strategy & Management,Visual Collaboration,"Ole Qvist-Sørensen, Loa Baastrup",1,,,,,426
+,,Business: Strategy & Management,Zero to One,"Peter Thiel, Blake Masters",1,5,read,"Zero to One: Notes on Startups, or How to Build the Future",,52
+,,Career & Job Hunt,Ace the Data Science Interview,"Kevin Huo, Nick Singh",1,,,,,65
+,,Career & Job Hunt,HBR Guide to Changing Your Career,Harvard Business Review,1,,,,,162
+,,Career & Job Hunt,Parachute? 2017 (What Color Is Your Parachute? 2017 — right edge cropped),Richard N. Bolles,1,,,,P5 bad/uncertain identification,244
+,,Career & Job Hunt,The Family Nest Egg,Laura Meier,1,,,,,346
+,,Career & Job Hunt,The Four Steps to the Epiphany,Steve Blank,1,,,,,352
+,,Career & Job Hunt,What Color Is Your Parachute? 2017,Richard N. Bolles,1,,,,P5 bad/uncertain identification,427
+,,Computer Science & Programming,"Artificial Intelligence: A Modern Approach, 4e (Global Ed)","Stuart Russell, Peter Norvig",1,,,,,76
+,,Computer Science & Programming,Automate the Boring Stuff with Python,Al Sweigart,1,,,,,31
+,,Computer Science & Programming,"C++ Primer, 5e","Stanley B. Lippman, Josée Lajoie, Barbara E. Moo",1,,,,,93
+,,Computer Science & Programming,Cryptography Algorithms,Massimo Bertaccini,1,,,,,116
+,,Computer Science & Programming,Daily Coding Problem,"Alex Miller, Lawrence Wu",1,,,,,117
+,,Computer Science & Programming,Decision Trees & Random Forests: A Visual Introduction for Beginners,Chris Smith,1,,,,,120
+,,Computer Science & Programming,Hands-On Programming with R,Garrett Grolemund,1,5,read,Hands-On Programming with R: Write Your Own Functions and Simulations,,164
+,,Computer Science & Programming,"Introduction to Algorithms, 4e","Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein",1,,,,,192
+,,Computer Science & Programming,"Numerical Recipes in C++, 2e","William H. Press, Saul A. Teukolsky, William T. Vetterling, Brian P. Flannery",1,,,,,237
+,,Computer Science & Programming,Operating Systems: Three Easy Pieces,"Remzi H. Arpaci-Dusseau, Andrea C. Arpaci-Dusseau",1,,,,,238
+,,Computer Science & Programming,Python Machine Learning,Sebastian Raschka,1,,,,,261
+,,Computer Science & Programming,Python Pocket Reference,Mark Lutz,1,,,,,262
+,,Computer Science & Programming,R Cookbook,Paul Teetor,1,,,,,271
+,,Computer Science & Programming,The Hitchhiker's Guide to Python,"Kenneth Reitz, Tanya Schlusser",1,,,,,361
+,,Computer Science & Programming,The Mathematics of Secrets,Joshua Holden,1,,,,,369
+,,Computer Science & Programming,"The Pragmatic Programmer, 20th Anniversary Edition","Andrew Hunt, David Thomas",1,,,,,382
+,,Computer Science & Programming,Think Bayes,Allen B. Downey,1,,,,,406
+,,Computer Science & Programming,Think Python,Allen B. Downey,1,,,,,408
+,,Computer Science & Programming,"Think Stats, 2e",Allen B. Downey,1,,,,,409
+,,"Data Science, ML & AI",All the Math You Missed,Thomas A. Garrity,1,,,,,19
+,,"Data Science, ML & AI",Causal Inference and Discovery in Python,Aleksander Molak,1,,,,,104
+,,"Data Science, ML & AI",Data Science from Scratch,Joel Grus,1,,,,,18
+,,"Data Science, ML & AI",Essential Math for Data Science,Thomas Nield,1,,,,,20
+,,"Data Science, ML & AI",Football Analytics with Python & R,"Eric A. Eager, Richard A. Erickson",1,4,read,Football Analytics with Python & R: Learning Data Science Through the Lens of Sports,,38
+,,"Data Science, ML & AI",Fundamentals of Data Engineering,"Joe Reis, Matt Housley",1,,,,,15
+,,"Data Science, ML & AI",Generative Deep Learning,David Foster,1,,,,,12
+,,"Data Science, ML & AI",Hands-On Large Language Models,"Jay Alammar, Maarten Grootendorst",1,5,read,Hands-On Large Language Models: Language Understanding and Generation,,163
+,,"Data Science, ML & AI",Introduction to Machine Learning with Python,"Andreas C. Müller, Sarah Guido",1,,,,,194
+,,"Data Science, ML & AI",Microsoft Excel 2013: Data Analysis and Business Modeling,Wayne L. Winston,1,,,,,228
+,,"Data Science, ML & AI",Pattern Recognition and Machine Learning,Christopher M. Bishop,1,,,,,23
+,,"Data Science, ML & AI",Practical Statistics for Data Scientists,"Peter Bruce, Andrew Bruce, Peter Gedeck",1,,,,,14
+,,"Data Science, ML & AI",Python for Data Analysis,Wes McKinney,1,5,read,Python for Data Analysis,,13
+,,"Data Science, ML & AI",Python for Finance,Yves Hilpisch,1,,,,,16
+,,"Data Science, ML & AI",Quick Start Guide to Large Language Models,Sinan Ozdemir,1,4,read,Quick Start Guide to Large Language Models: Strategies and Best Practices for Using ChatGPT and Other LLMs,,270
+,,"Data Science, ML & AI",The AI Product Manager's Handbook,Irene Bratsis,1,,,,,21
+,,"Data Science, ML & AI",The Kaggle Book,"Konrad Banachewicz, Luca Massaron",1,,,,,2
+,,Economics,Applied Financial Macroeconomics and Investment Strategy,Robert T. McGee,1,,,,,75
+,,Economics,"Basic Economics, Fifth Edition",Thomas Sowell,1,,to-read,Basic Economics: A Common Sense Guide to the Economy,,81
+,,Economics,Financial Decisions and Markets,John Y. Campbell,1,,,,,140
+,,Economics,Macroeconomic Patterns and Stories,Edward E. Leamer,1,,,,,217
+,,Economics,Price Setting,Truman F. Bewley,1,,,,,3
+,,Economics,"Principles of Macroeconomics, 7e",N. Gregory Mankiw,1,,,,,25
+,,Economics,The Economics of Information (USED),Ian Molho,1,,,,,339
+,,Fiction & Classics,Cain's Jawbone,Edward Powys Mathers,1,,,,,102
+,,Fiction & Classics,Dr. Jekyll and Mr. Hyde,Robert Louis Stevenson,1,,,,,126
+,,Finance: Corporate & Valuation,A Random Walk Down Wall Street (Completely Revised and Updated),Burton G. Malkiel,1,,,,,63
+,,Finance: Corporate & Valuation,"Big ORBIT Cases / 6e Compendium (Part 1, 2, 3 — case study books)",Bridgewater,1,,,,,85
+,,Finance: Corporate & Valuation,"Case in Point: Complete Case Interview Preparation, 11th Edition",Marc P. Cosentino,1,,,,,103
+,,Finance: Corporate & Valuation,Competing in the Age of AI,"Marco Iansiti, Karim R. Lakhani",1,,,,,17
+,,Finance: Corporate & Valuation,"Computer Science (textbook, 13th edition) (left)",Pearson,1,,,,,108
+,,Finance: Corporate & Valuation,"Computer Science: An Overview, 13e","Glenn Brookshear, Dennis Brylow",1,,,,,109
+,,Finance: Corporate & Valuation,Corporate Finance,"Jesse McDougall, Patrick Boyle",1,,,,,111
+,,Finance: Corporate & Valuation,Creative Cash Flow Reporting,Charles W. Mulford,1,,,,,112
+,,Finance: Corporate & Valuation,Credit Risk Modeling Using Excel and VBA,"Gunter Loeffler, Peter N. Posch",1,,,,,113
+,,Finance: Corporate & Valuation,Dave Ramsey's Complete Guide to Money,Dave Ramsey,1,,,,,118
+,,Finance: Corporate & Valuation,"Financial Statement Analysis and Security Valuation, 5e",Stephen H. Penman,1,,,,,145
+,,Finance: Corporate & Valuation,"Financial Statement Analysis Workbook, 5e","Martin S. Fridson, Fernando Alvarez",1,,,,,144
+,,Finance: Corporate & Valuation,"Financial Statement Analysis, 5e","Martin S. Fridson, Fernando Alvarez",1,,,,,146
+,,Finance: Corporate & Valuation,Fundamentals of Corporate Finance,"Berk, DeMarzo, Harford",1,,,,,154
+,,Finance: Corporate & Valuation,German Body Comp Program,Charles Poliquin,1,,,,,156
+,,Finance: Corporate & Valuation,In the Company of Heroes,Michael J. Durant,1,,,,,184
+,,Finance: Corporate & Valuation,Insurance and Behavioral Economics,"Howard C. Kunreuther, Mark V. Pauly, Stacey McMorrow",1,,,,,41
+,,Finance: Corporate & Valuation,Intro to Python for Computer Science and Data Science,"Paul Deitel, Harvey Deitel",1,,,,,191
+,,Finance: Corporate & Valuation,"Introduction to the Theory of Computation, 3e",Michael Sipser,1,,,,,196
+,,Finance: Corporate & Valuation,"Investment Valuation, 3e",Aswath Damodaran,1,,,,,201
+,,Finance: Corporate & Valuation,Mulford on Cash Flow Reporting (Uncovering Sustainable Financial Performance),"Charles Mulford, Eugene Comiskey",1,,,,,233
+,,Finance: Corporate & Valuation,Security Analysis (Graham & Dodd),"Benjamin Graham, David Dodd",1,,,,,281
+,,Finance: Corporate & Valuation,"Security Analysis (Graham & Dodd), 5e","Sidney Cottle, Roger F. Murray, Frank E. Block",1,,,,,282
+,,Finance: Corporate & Valuation,The Complete Personal Memoirs of Ulysses S. Grant,Ulysses S. Grant,1,,,,,45
+,,Finance: Corporate & Valuation,"The Complete Strategy Collection (Art of War, The Prince, Book of Five Rings, On War, Arthashastra)","Sun Tzu, Machiavelli, Musashi, Clausewitz, Chanakya",1,,,,,333
+,,Finance: Corporate & Valuation,The Compound Effect,Darren Hardy,1,4,read,"The Compound Effect: Jumpstart Your Income, Your Life, Your Success",,334
+,,Finance: Corporate & Valuation,"The Dark Side of Valuation, 3e",Aswath Damodaran,1,,,,,338
+,,Finance: Corporate & Valuation,The Hidden Trillion Dollar Industry of Private Equity,Maddox Metzger,1,,,,,360
+,,Finance: Corporate & Valuation,The Interpretation of Financial Statements,"Benjamin Graham, Spencer B. Meredith",1,,,,,362
+,,Finance: Corporate & Valuation,The Little Book of Valuation,Aswath Damodaran,1,,,,,368
+,,Finance: Corporate & Valuation,The Private Equity Toolkit,Tamara Sakovska,1,,,,,383
+,,Finance: Corporate & Valuation,Think Complexity,Allen B. Downey,1,,,,,407
+,,Finance: Corporate & Valuation,Valuation (McKinsey),"Tim Koller, Marc Goedhart, David Wessels",1,,,,,423
+,,Finance: Corporate & Valuation,"Valuation Workbook, 7e",Tim Koller,1,,,,,424
+,,Finance: Corporate & Valuation,Value: The Four Cornerstones of Corporate Finance,"Tim Koller, Richard Dobbs, Bill Huyett",1,,,,,425
+,,Finance: Corporate & Valuation,Your Complete Guide to Factor-Based Investing,"Andrew L. Berkin, Larry E. Swedroe",1,,,,,431
+,,Finance: Investing & Markets,A Man for All Markets,Edward O. Thorp,1,5,read,"A Man for All Markets: From Las Vegas to Wall Street, How I Beat the Dealer and the Market",,58
+,,Finance: Investing & Markets,Beat the Dealer,Edward O. Thorp,1,,,,,82
+,,Finance: Investing & Markets,Beat the Market,"Edward O. Thorp, Sheen T. Kassouf",1,,to-read,Beat the Market: A Scientific Stock Market System,,83
+,,Finance: Investing & Markets,Economic Puppetmasters,Lawrence B. Lindsey,1,,,,,128
+,,Finance: Investing & Markets,Fortune's Formula,William Poundstone,1,5,read,Fortune's Formula: The Untold Story of the Scientific Betting System That Beat the Casinos and Wall Street,,4
+,,Finance: Investing & Markets,How to Decide,Annie Duke,1,,to-read,How to Decide: Simple Tools for Making Better Choices,,176
+,,Finance: Investing & Markets,Inside Delta Force,Eric L. Haney,1,,,,,186
+,,Finance: Investing & Markets,Investing in Mortgage Securities,Laurie S. Goodman?,1,,,,,198
+,,Finance: Investing & Markets,Lords of Finance: The Bankers Who Broke the World,Liaquat Ahamed,1,5,read,Lords of Finance: The Bankers Who Broke the World,,215
+,,Finance: Investing & Markets,Mastering the Market Cycle,Howard Marks,1,,,,,221
+,,Finance: Investing & Markets,Moneyball,Michael Lewis,1,,,,,232
+,,Finance: Investing & Markets,Safe Haven: Investing for Financial Storms,Mark Spitznagel,1,5,read,Safe Haven: Investing for Financial Storms,,280
+,,Finance: Investing & Markets,Soros on Soros,George Soros,1,,to-read,Soros on Soros: Staying Ahead of the Curve,,290
+,,Finance: Investing & Markets,Superforecasting,"Philip E. Tetlock, Dan Gardner",1,,read,Superforecasting: The Art and Science of Prediction,,305
+,,Finance: Investing & Markets,The Alchemy of Finance,George Soros,1,,,,,315
+,,Finance: Investing & Markets,The Dhandho Investor,Mohnish Pabrai,2,,currently-reading,The Dhandho Investor: The Low-Risk Value Method to High Returns,P3 2 physical copies,48
+,,Finance: Investing & Markets,The Essential Drucker,Peter F. Drucker,1,,,,,343
+,,Finance: Investing & Markets,The Essential Tversky,Amos Tversky,1,,,,,344
+,,Finance: Investing & Markets,The Hard Thing About Hard Things,Ben Horowitz,1,5,read,The Hard Thing About Hard Things: Building a Business When There Are No Easy Answers―Straight Talk on the Challenges of Entrepreneurship,,358
+,,Finance: Investing & Markets,The Most Important Thing,Howard Marks,1,,to-read,The Most Important Thing: Uncommon Sense for the Thoughtful Investor (Columbia Business School Publishing),,375
+,,Finance: Investing & Markets,The New Lombard Street,Perry Mehrling,1,,,,,377
+,,Finance: Investing & Markets,The Secrets of Economic Indicators (3e),Bernard Baumohl,1,,,,,389
+,,Finance: Investing & Markets,Thinking in Bets,Annie Duke,1,5,read,Thinking in Bets: Making Smarter Decisions When You Don't Have All the Facts,,412
+,,Finance: Investing & Markets,This Time Is Different,"Carmen M. Reinhart, Kenneth S. Rogoff",1,,,,,414
+,,Finance: Investing & Markets,You Can Be a Stock Market Genius,Joel Greenblatt,1,5,read,You Can Be a Stock Market Genius: Uncover the Secret Hiding Places of Stock Market Profits,,429
+,,Finance: Quant & Derivatives,A Crash Course in Options and Futures,"Markus K. Brunnermeier, Friedrich Reichlin",1,,,,,56
+,,Finance: Quant & Derivatives,A Linear Algebra Primer for Financial Engineering,Dan Stefanica,1,,,,,57
+,,Finance: Quant & Derivatives,A Practitioner's Guide to Asset Allocation,"William Kinlaw, Mark P. Kritzman, David Turkington",1,,,,,59
+,,Finance: Quant & Derivatives,A Pragmatist's Guide to Leveraged Finance,Robert S. Kricheff,1,,to-read,A Pragmatist's Guide to Leveraged Finance: Credit Analysis for Bonds and Bank Debt,,60
+,,Finance: Quant & Derivatives,"A Primer for the Mathematics of Financial Engineering, 2e (Solutions Manual)",Dan Stefanica,1,,,,,61
+,,Finance: Quant & Derivatives,"Active Portfolio Management, 2e","Richard C. Grinold, Ronald N. Kahn",1,,,,,67
+,,Finance: Quant & Derivatives,Algorithmic Short Selling with Python,Laurent Bernut,1,,,,,68
+,,Finance: Quant & Derivatives,"All About Hedge Funds, 2e",Ezra Zask,1,,,,,70
+,,Finance: Quant & Derivatives,Analysis of Financial Time Series,Ruey S. Tsay,1,,,,,22
+,,Finance: Quant & Derivatives,Applied Financial Data Engineering,Tony Guida,1,,,,,74
+,,Finance: Quant & Derivatives,Asset Management: A Systematic Approach to Factor Investing,Andrew Ang,1,,,,,78
+,,Finance: Quant & Derivatives,Asset Pricing (Revised Edition),John H. Cochrane,1,,,,,79
+,,Finance: Quant & Derivatives,"Asset Pricing and Portfolio Choice Theory, 2e",Kerry Back,1,,,,,80
+,,Finance: Quant & Derivatives,"Bond Markets, Analysis, and Strategies, 9e",Frank J. Fabozzi,1,,,,,32
+,,Finance: Quant & Derivatives,"Chaos and Order in the Capital Markets, 2e",Edgar E. Peters,1,,,,,105
+,,Finance: Quant & Derivatives,Convertible Securities,John P. Calamos,1,,,,,110
+,,Finance: Quant & Derivatives,Distressed Debt Analysis,Stephen G. Moyer,1,,to-read,Distressed Debt Analysis: Strategies for Speculative Investors,,124
+,,Finance: Quant & Derivatives,Efficiently Inefficient,Lasse Heje Pedersen,1,,,,,129
+,,Finance: Quant & Derivatives,Empirical Market Microstructure,Joel Hasbrouck,1,,,,,131
+,,Finance: Quant & Derivatives,Expected Returns,Antti Ilmanen,1,,,,,35
+,,Finance: Quant & Derivatives,Famous First Bubbles,Peter M. Garber,1,3,read,Famous First Bubbles: The Fundamentals of Early Manias,P2 you rated 3★,136
+,,Finance: Quant & Derivatives,Financial Modeling Using Excel,,1,,,,,141
+,,Finance: Quant & Derivatives,Financial Modeling Using Excel and VBA,Chandan Sengupta,1,,,,,142
+,,Finance: Quant & Derivatives,"Financial Shenanigans, 4e","Howard Schilit, Jeremy Perler, Yoni Engelhart",1,,,,,143
+,,Finance: Quant & Derivatives,Fixed Income Analysis Workbook (Global Edition),Frank J. Fabozzi,1,,,,,147
+,,Finance: Quant & Derivatives,"Fixed Income Analysis, 2e",Frank J. Fabozzi,1,,,,,36
+,,Finance: Quant & Derivatives,"Fixed Income Mathematics, 4e",Frank J. Fabozzi,1,,,,,148
+,,Finance: Quant & Derivatives,Fractal Market Analysis,Edgar E. Peters,1,,,,,149
+,,Finance: Quant & Derivatives,Fractals,Benoit B. Mandelbrot,1,,,,,150
+,,Finance: Quant & Derivatives,Fractals and Scaling in Finance,Benoit B. Mandelbrot,1,,,,,151
+,,Finance: Quant & Derivatives,Frequently Asked Questions in Quantitative Finance,Paul Wilmott,1,,,,,152
+,,Finance: Quant & Derivatives,Global Convertible Investing,H. Carter Woodson,1,,,,,157
+,,Finance: Quant & Derivatives,Global Macro Trading,Greg Gliner,1,,,,,158
+,,Finance: Quant & Derivatives,Heard on the Street (right edge — confirm),Timothy Falcon Crack,1,,,,,165
+,,Finance: Quant & Derivatives,High Performing Investment Teams,,1,,,,,168
+,,Finance: Quant & Derivatives,Inside the Yield Book,"Sidney Homer, Martin L. Leibowitz",1,,,,,188
+,,Finance: Quant & Derivatives,"Introduction to Fixed Income Analytics, 2e","Frank J. Fabozzi, Steven V. Mann",1,,,,,193
+,,Finance: Quant & Derivatives,Introduction to Risk Parity and Budgeting,Thierry Roncalli,1,,,,,195
+,,Finance: Quant & Derivatives,Investing in Convertible Securities,John P. Calamos,1,,,,,197
+,,Finance: Quant & Derivatives,Investment Banking Workbook,"Joshua Rosenbaum, Joshua Pearl",1,,,,,199
+,,Finance: Quant & Derivatives,"Investment Banking, 2e","Joshua Rosenbaum, Joshua Pearl",1,,,,,200
+,,Finance: Quant & Derivatives,Machine Trading,Ernest P. Chan,1,,,,,1
+,,Finance: Quant & Derivatives,Mathematical Foundations of Quantum Mechanics (New Edition),John von Neumann,1,,,,,222
+,,Finance: Quant & Derivatives,Option Volatility & Pricing,Sheldon Natenberg,1,,,,,239
+,,Finance: Quant & Derivatives,Option Volatility & Pricing Workbook,Sheldon Natenberg,1,,,,,240
+,,Finance: Quant & Derivatives,Options as a Strategic Investment Study Guide (Fifth Edition),Lawrence G. McMillan,1,,,,,242
+,,Finance: Quant & Derivatives,"Options as a Strategic Investment, Fifth Edition",Lawrence G. McMillan,1,,,,,243
+,,Finance: Quant & Derivatives,Options Demystified,Thomas A. McCafferty,1,,,,,241
+,,Finance: Quant & Derivatives,"Options, Futures, and Other Derivatives, 11e",John C. Hull,1,,,,,44
+,,Finance: Quant & Derivatives,Poor Charlie's Almanack,Charles T. Munger,1,,,,,252
+,,Finance: Quant & Derivatives,"Principles of Financial Engineering, 3e","Robert L. Kosowski, Salih N. Neftci",1,,,,,257
+,,Finance: Quant & Derivatives,Private Debt,Stephen L. Nesbitt,1,,currently-reading,"Private Debt: Yield, Safety and the Emergence of Alternative Lending (Wiley Finance)",,258
+,,Finance: Quant & Derivatives,Python for Algorithmic Trading,Yves Hilpisch,1,4,read,Python for Algorithmic Trading: From Idea to Cloud Deployment,,263
+,,Finance: Quant & Derivatives,"Python for Finance, Trading, and Algorithmic Trading",Lucas Inglese,1,,,,,264
+,,Finance: Quant & Derivatives,Quality of Earnings,Thornton L. O'glove,1,,,,,266
+,,Finance: Quant & Derivatives,Quant Job Interview Questions and Answers,"Mark Joshi, Nick Denson, Andrew Downes",1,,,,,267
+,,Finance: Quant & Derivatives,Quantitative Equity Portfolio Management,"Ludwig B. Chincarini, Daehwan Kim",1,,,,,268
+,,Finance: Quant & Derivatives,Quantitative Finance: Dragon Fire Method,Vincent Van Dux,1,,,,,269
+,,Finance: Quant & Derivatives,Risk Parity Fundamentals,Edward E. Qian,1,,,,,275
+,,Finance: Quant & Derivatives,Starting Your Career as a Wall Street Quant,Brett Jiu,1,,,,,292
+,,Finance: Quant & Derivatives,Statistical Models and Methods for Financial Markets,"Tze Leung Lai, Haipeng Xing",1,,,,,294
+,,Finance: Quant & Derivatives,Stochastic Calculus for Finance I: The Binomial Asset Pricing Model,Steven Shreve,1,,,,,296
+,,Finance: Quant & Derivatives,Stochastic Calculus for Finance II: Continuous-Time Models,Steven Shreve,1,,,,,297
+,,Finance: Quant & Derivatives,Techniques of Financial Analysis,Erich A. Helfert,1,,,,,308
+,,Finance: Quant & Derivatives,The (Mis)Behaviour of Markets,"Benoit B. Mandelbrot, Richard L. Hudson",1,5,read,The (Mis)Behavior of Markets,,309
+,,Finance: Quant & Derivatives,"The Fast Track: The Insider's Guide to Winning Jobs in Management Consulting, Investment Banking & Securities Trading",Mariam Naficy,1,,,,,347
+,,Finance: Quant & Derivatives,"The Handbook of Fixed Income Securities, 8e",Frank J. Fabozzi,1,,,,,357
+,,Finance: Quant & Derivatives,The Kelly Capital Growth Investment Criterion: Theory and Practice,"Leonard C. MacLean, Edward O. Thorp, William T. Ziemba",1,,,,,363
+,,Finance: Quant & Derivatives,The Little Book That Still Beats the Market,Joel Greenblatt,1,,,,,366
+,,Finance: Quant & Derivatives,The Quantum Leap Strategy,"Price Pritchett, Ph.D.",1,4,read,The Quantum Leap Strategy,,384
+,,Finance: Quant & Derivatives,"The Volatility Surface, 2e",Jim Gatheral,1,,,,,401
+,,Finance: Quant & Derivatives,Trader Construction Kit,Joel Rubano,1,,,,,418
+,,Finance: Quant & Derivatives,"What Works on Wall Street, 4e",James P. O'Shaughnessy,1,,,,,428
+,,Finance: Quant & Derivatives,you² (You Squared): A High-Velocity Formula for Multiplying Your Personal Effectiveness in Quantum Leaps,"Price Pritchett, Ph.D.",1,,,,,432
+,,Finance: Test Prep (CFA / CAIA),Alternative Investments: CAIA Level I,"Chambers, Anson, Black, Kazemi",1,,,,,26
+,,Finance: Test Prep (CFA / CAIA),Alternative Investments: CAIA Level II,"Kazemi, Black, Chambers",1,,,,,24
+,,Finance: Test Prep (CFA / CAIA),CAIA 2016 Level I Schweser's Secret Sauce,Kaplan Schweser,1,,,,P5 dated test-prep (2016); exam crammer,94
+,,Finance: Test Prep (CFA / CAIA),CAIA March 2017 Level II Schweser's Secret Sauce,Kaplan Schweser,1,,,,P5 dated test-prep (2017); exam crammer,95
+,,Finance: Test Prep (CFA / CAIA),"CFA 2017 Level II Volume 1: Ethical and Professional Standards, Quantitative Methods, and Economics",CFA Institute,1,,,,P5 dated test-prep (2017),96
+,,Finance: Test Prep (CFA / CAIA),CFA 2017 Level II Volume 2: Financial Reporting and Analysis,CFA Institute,1,,,,P5 dated test-prep (2017),97
+,,Finance: Test Prep (CFA / CAIA),CFA 2017 Level II Volume 3: Corporate Finance,CFA Institute,1,,,,P5 dated test-prep (2017),98
+,,Finance: Test Prep (CFA / CAIA),CFA 2017 Level II Volume 4: Equity,CFA Institute,1,,,,P5 dated test-prep (2017),99
+,,Finance: Test Prep (CFA / CAIA),CFA 2017 Level II Volume 5: Fixed Income and Derivatives,CFA Institute,1,,,,P5 dated test-prep (2017),100
+,,Finance: Test Prep (CFA / CAIA),CFA 2017 Level II Volume 6: Alternative Investments and Portfolio Management,CFA Institute,1,,,,P5 dated test-prep (2017),101
+,,"History, Politics & Current Affairs",Blitz: Trump Will Smash the Left and Win,David Horowitz,1,,,,,86
+,,"History, Politics & Current Affairs",Going Rogue: An American Life,Sarah Palin,1,,,,,159
+,,"History, Politics & Current Affairs","How the Specter of Communism Is Ruling Our World, Vol. I",The Epoch Times,1,,,,,173
+,,"History, Politics & Current Affairs","How the Specter of Communism Is Ruling Our World, Vol. II",The Epoch Times,1,,,,,174
+,,"History, Politics & Current Affairs",Inventing Mark Twain,Andrew Hoffman,1,,,,,42
+,,"History, Politics & Current Affairs",Lone Survivor,Marcus Luttrell,1,,,,,214
+,,"History, Politics & Current Affairs",Ronald Reagan 100 Years,Reagan Foundation,1,,,,,276
+,,"History, Politics & Current Affairs",Rush Limbaugh: An Army of One,Zev Chafets,1,,,,,277
+,,"History, Politics & Current Affairs",The American War on Election Corruption,Seth Keshel,1,,,,,317
+,,Leadership,Leadership Beyond Reason,John Townsend,1,,,,,207
+,,Leadership,Team of Teams,Stanley McChrystal,1,,,,,307
+,,Leadership,The 5 Laws of Trust,,1,,,,,313
+,,Leadership,The Checklist Manifesto,Atul Gawande,1,,,,,332
+,,"Marketing, Sales & Persuasion",Actionable Gamification,Yu-kai Chou,1,,,,,66
+,,"Marketing, Sales & Persuasion",Blue Ocean Strategy,"W. Chan Kim, Renée Mauborgne",1,,to-read,Blue Ocean Strategy: How to Create Uncontested Market Space and Make the Competition Irrelevant,,87
+,,"Marketing, Sales & Persuasion","Crossing the Chasm, 3e",Geoffrey A. Moore,1,5,read,Crossing the Chasm: Marketing and Selling High-Tech Products to Mainstream Customers,,114
+,,"Marketing, Sales & Persuasion",Decoded,Phil Barden,1,,to-read,Decoded: The Science Behind Why We Buy,,121
+,,"Marketing, Sales & Persuasion",Exposing the Magic of Design,Jon Kolko,1,,,,,135
+,,"Marketing, Sales & Persuasion",How Innovation Works: And Why It Flourishes in Freedom,Matt Ridley,1,,,,,172
+,,"Marketing, Sales & Persuasion",Influence: The Psychology of Persuasion,Robert Cialdini,1,,,,,185
+,,"Marketing, Sales & Persuasion",Killer Visual Strategies,Amy Balliett,1,,,,,204
+,,"Marketing, Sales & Persuasion",Personal Influence,,1,,,,,246
+,,"Marketing, Sales & Persuasion",Pitch the Perfect Investment,"Paul D. Sonkin, Paul Johnson",1,,,,,11
+,,"Marketing, Sales & Persuasion",Pre-Suasion,Robert Cialdini,1,,,,,255
+,,"Marketing, Sales & Persuasion",The 48 Laws of Power,Robert Greene,1,4,read,The 48 Laws of Power,,311
+,,"Marketing, Sales & Persuasion",The Art of Startup Fundraising,Alejandro Cremades,1,,,,,323
+,,"Marketing, Sales & Persuasion",The Art of Visual Notetaking,Emily Mills,1,,,,,324
+,,"Marketing, Sales & Persuasion",The Rational Optimist: How Prosperity Evolves,Matt Ridley,1,,,,,385
+,,"Marketing, Sales & Persuasion",The Sketchnote Handbook,Mike Rohde,1,,,,,390
+,,"Marketing, Sales & Persuasion",The Sketchnote Workbook: Advanced Techniques,Mike Rohde,1,,,,,391
+,,"Marketing, Sales & Persuasion",The Ultimate Marketing Plan,Dan S. Kennedy,1,,,,,7
+,,"Marketing, Sales & Persuasion",The Ultimate Sales Letter,Dan S. Kennedy,1,,,,,8
+,,Math & Statistics,A Calculus Refresher,A. Albert Klaf,1,,,,,55
+,,Math & Statistics,"A First Course in Probability, 9e",Sheldon Ross,1,,,,,29
+,,Math & Statistics,A Probability Path,Sidney I. Resnick,1,,,,,62
+,,Math & Statistics,Calculus: An Intuitive and Physical Approach,Morris Kline,2,,,,P3 2 physical copies,27
+,,Math & Statistics,Elementary Differential Equations Solutions Manual,,1,,,,,130
+,,Math & Statistics,"Elementary Differential Equations with Boundary Value Problems, 6e","C. Henry Edwards, David E. Penney",1,,,,,28
+,,Math & Statistics,"Elementary Differential Equations, 7e","Boyce, DiPrima",1,,,,,34
+,,Math & Statistics,Full Frontal Calculus,Seth Braver,1,,,,,153
+,,Math & Statistics,"Fundamentals of Differential Equations, 8e","Nagle, Saff, Snider",1,,,,,39
+,,Math & Statistics,"Linear Algebra and Its Applications, 5e (Update)",David C. Lay,1,,,,,213
+,,Math & Statistics,Linear Algebra Done Right,Sheldon Axler,1,,,,,212
+,,Math & Statistics,Mathematical Methods of Physics,"Jon Mathews, R.L. Walker",1,,,,,223
+,,Math & Statistics,"Mathematics for Finance, 2e","Marek Capinski, Tomasz Zastawniak",1,,,,,224
+,,Math & Statistics,"Mathematics: Its Content, Methods and Meaning","A.D. Aleksandrov, A.N. Kolmogorov, M.A. Lavrent'ev",1,,,,,225
+,,Math & Statistics,Measure Theory: Questions and Answers,George Duckett,1,,,,,227
+,,Math & Statistics,"Modern Calculus with Analytic Geometry, Volume I",A.W. Goodman,1,,,,,231
+,,Math & Statistics,Multivariable Calculus,Clark Bray,1,,,,,43
+,,Math & Statistics,Playing for Real: A Text on Game Theory,Ken Binmore,1,,,,,250
+,,Math & Statistics,Precalculus Made Difficult,Seth Braver,1,,,,,256
+,,Math & Statistics,"Q Tips: Fast, Scalable, and Maintainable Kdb+",Nick Psaris,1,,,,,265
+,,Math & Statistics,"Solutions Manual Differential Equations, 6e","Nagle, Saff, Snider",1,,,,,288
+,,Math & Statistics,"Solutions Manual for Fundamentals of Differential Equations and Boundary Value Problems, 6e","Nagle, Saff, Snider",1,,,,,289
+,,Math & Statistics,"Student Solutions Manual for Elementary Differential Equations with Boundary Value Problems, 4e",,1,,,,,303
+,,Math & Statistics,The Dark Art of Linear Algebra,Seth Braver,1,,,,,337
+,,Math & Statistics,The Enjoyment of Math,"Hans Rademacher, Otto Toeplitz",1,,,,,49
+,,Math & Statistics,The Essence of SQL,David Rozenshtein,1,,,,,342
+,,Math & Statistics,The Geographical Pivot of History,Halford John Mackinder,1,5,read,The Geographical Pivot of History: Illustrated,,353
+,,Memoir & Biography,Shadow Divers,Robert Kurson,1,,,,,284
+,,Personal Development & Self-Help,12 Rules for Life: An Antidote to Chaos,Jordan B. Peterson,1,5,read,12 Rules for Life: An Antidote to Chaos,,53
+,,Personal Development & Self-Help,75 Hard,Andy Frisella,1,,,,,54
+,,Personal Development & Self-Help,A Year with C.S. Lewis,C.S. Lewis,1,,,,,64
+,,Personal Development & Self-Help,Algorithms to Live By,"Brian Christian, Tom Griffiths",1,4,read,Algorithms to Live By: The Computer Science of Human Decisions,,69
+,,Personal Development & Self-Help,All the Evil of This World,Jared Dillian,1,,,,,71
+,,Personal Development & Self-Help,"An Anatomy of Inspiration, and An Essay on the Creative Mood",Rosamond E. M. Harding,1,,,,,72
+,,Personal Development & Self-Help,As a Man Thinketh,James Allen,1,,,,,77
+,,Personal Development & Self-Help,Boundaries,"Henry Cloud, John Townsend",1,,,,,88
+,,Personal Development & Self-Help,Breakthrough Rapid Reading,Peter Kump,1,,,,,89
+,,Personal Development & Self-Help,Build a Better Brain,Peter Hollins,1,,,,,90
+,,Personal Development & Self-Help,Build: An Unorthodox Guide to Making Things Worth Making,Tony Fadell,1,4,read,Build: An Unorthodox Guide to Making Things Worth Making,,91
+,,Personal Development & Self-Help,Chosen Soldier,Dick Couch,1,,,,,106
+,,Personal Development & Self-Help,Crucial Conversations: Tools for Talking When Stakes Are High,Joseph Grenny,1,,,,,115
+,,Personal Development & Self-Help,"Decision Making: Descriptive, Normative, and Prescriptive Interactions","David E. Bell, Howard Raiffa, Amos Tversky",1,,,,,119
+,,Personal Development & Self-Help,Designing Your Life,"Bill Burnett, Dave Evans",1,4,read,Designing Your Life: Build a Life that Works for You,,122
+,,Personal Development & Self-Help,Developing Talent in Young People,Benjamin S. Bloom,1,,,,,123
+,,Personal Development & Self-Help,Drive: The Surprising Truth About What Motivates Us,Daniel H. Pink,1,,to-read,Drive: The Surprising Truth About What Motivates Us,,127
+,,Personal Development & Self-Help,Every Good Endeavor,Timothy Keller,1,,,,,133
+,,Personal Development & Self-Help,Faster Than Normal,Peter Shankman,1,,,,,137
+,,Personal Development & Self-Help,Feeding the Monster,Seth Mnookin,1,,,,,138
+,,Personal Development & Self-Help,Gorilla Mindset,Mike Cernovich,1,,,,,160
+,,Personal Development & Self-Help,"Hello, My Name Is Awesome",Alexandra Watkins,1,,,,,166
+,,Personal Development & Self-Help,Ho'oponopono Mental and Emotional Release,Dr. Matt James with Tris Thorp,1,,,,,169
+,,Personal Development & Self-Help,How I Found Freedom in an Unfree World,Harry Browne,1,,,,,170
+,,Personal Development & Self-Help,How to Be a Super Reader,Ron Cole,1,5,read,"How to Be a Super Reader: Read Faster, Understand More, Remember for Longer",,175
+,,Personal Development & Self-Help,How to Fail at Almost Everything and Still Win Big,Scott Adams,1,3,read,How to Fail at Almost Everything and Still Win Big: Kind of the Story of My Life,P2 you rated 3★,177
+,,Personal Development & Self-Help,How to Read a Book,"Mortimer J. Adler, Charles Van Doren",2,4,read,How to Read a Book: The Classic Guide to Intelligent Reading,P3 2 physical copies,40
+,,Personal Development & Self-Help,How to Win Friends & Influence People,Dale Carnegie,1,,,,,178
+,,Personal Development & Self-Help,Ikigai,"Héctor García, Francesc Miralles",1,,,,,182
+,,Personal Development & Self-Help,Impossible to Ignore,Carmen Simon,1,,,,,183
+,,Personal Development & Self-Help,Inside the Global Economy: A Practical Guide,Vonnegut on spine — actually probably Kurt Vonnegut book?,1,,,,,187
+,,Personal Development & Self-Help,Internal Family Systems Skills Training Manual,"Frank G. Anderson, Martha Sweezy, Richard C. Schwartz",1,,,,,189
+,,Personal Development & Self-Help,Internal Family Systems Therapy,"Richard C. Schwartz, Martha Sweezy",1,,,,,190
+,,Personal Development & Self-Help,It's Never Too Late to Begin Again,"Julia Cameron, Emma Lively",1,,,,,202
+,,Personal Development & Self-Help,Keep Going,Austin Kleon,1,4,read,Keep Going: 10 Ways to Stay Creative in Good Times and Bad (Austin Kleon),,203
+,,Personal Development & Self-Help,Knee Ability Zero,Ben Patrick,1,,,,,205
+,,Personal Development & Self-Help,Leadership and the Quest for Integrity,Joseph L. Badaracco Jr.,1,,,,,208
+,,Personal Development & Self-Help,Leading with Character,Loehr,1,,,,,209
+,,Personal Development & Self-Help,Letters to a Young Catholic,George Weigel,1,,,,,210
+,,Personal Development & Self-Help,Love Does,Bob Goff,1,,,,,216
+,,Personal Development & Self-Help,Make Anything Happen,Lindsey Schwartz,1,,,,,218
+,,Personal Development & Self-Help,Man's Search for Meaning,Viktor E. Frankl,1,5,read,Man's Search for Meaning,,219
+,,Personal Development & Self-Help,Maps of Meaning: The Architecture of Belief,Jordan B. Peterson,1,,,,,220
+,,Personal Development & Self-Help,Mindset,Carol S. Dweck,1,,,,,229
+,,Personal Development & Self-Help,Moonwalking with Einstein,Joshua Foer,1,,,,,6
+,,Personal Development & Self-Help,NLP: The Essential Guide to Neuro-Linguistic Programming,"Tom Hoobyar, Tom Dotz, Susan Sanders",1,,,,,234
+,,Personal Development & Self-Help,No More Mr. Nice Guy,Robert Glover,1,5,read,No More Mr. Nice Guy,,235
+,,Personal Development & Self-Help,Not Caring What Other People Think Is a Superpower,Ed Latimore,1,,read,Not Caring What Other People Think Is a Super Power: Insights From A Heavyweight Boxer,,236
+,,Personal Development & Self-Help,Personality Isn't Permanent,Benjamin Hardy,1,,to-read,Personality Isn't Permanent: Break Free from Self-Limiting Beliefs and Rewrite Your Story,,247
+,,Personal Development & Self-Help,Poliquin Principles,Charles Poliquin,1,,,,,251
+,,Personal Development & Self-Help,Practicing the Power of Now,Eckhart Tolle,1,4,read,"Practicing the Power of Now: Essential Teachings, Meditations, and Exercises from the Power of Now",,253
+,,Personal Development & Self-Help,Prairie Fire,Clay Martin,1,5,read,Prairie Fire: Guidebook for Surviving Civil War 2,,254
+,,Personal Development & Self-Help,Psycho-Cybernetics,Maxwell Maltz,1,5,read,Psycho-Cybernetics: A New Way to Get More Living Out of Life,,259
+,,Personal Development & Self-Help,Public Speaking for Success,Dale Carnegie,1,,,,,260
+,,Personal Development & Self-Help,Radio's Greatest of All Time,Rush Limbaugh,1,,,,,272
+,,Personal Development & Self-Help,Rich Dad Poor Dad,Robert T. Kiyosaki,1,,,,,274
+,,Personal Development & Self-Help,Rush Limbaugh: The Way Things Ought to Be,Rush Limbaugh,1,,,,,278
+,,Personal Development & Self-Help,Rush on the Radio,James Golden,1,,,,,279
+,,Personal Development & Self-Help,"See, I Told You So",Rush Limbaugh,1,,,,,283
+,,Personal Development & Self-Help,Show Your Work!,Austin Kleon,1,4,read,Show Your Work!: 10 Ways to Share Your Creativity and Get Discovered,,285
+,,Personal Development & Self-Help,Speed Reading,,1,,,,,291
+,,Personal Development & Self-Help,Steal Like an Artist,Austin Kleon,1,4,read,Steal Like an Artist: 10 Things Nobody Told You About Being Creative,,295
+,,Personal Development & Self-Help,Straitjacket Society,Masao Miyamoto,1,,,,,298
+,,Personal Development & Self-Help,StrengthsFinder 2.0,Tom Rath,1,,,,,299
+,,Personal Development & Self-Help,Strong Advice: Zuby's Guide to Fitness for Everybody,Zuby Udezue,1,,,,,300
+,,Personal Development & Self-Help,Success Affirmations: 52 Weeks for Living a Passionate and Purposeful Life,Jack Canfield,1,,,,,304
+,,Personal Development & Self-Help,Taming Your Gremlin,Rick Carson,2,,,,P3 2 physical copies,306
+,,Personal Development & Self-Help,The 4-Hour Workweek (Expanded and Updated),Tim Ferriss,1,,,,,310
+,,Personal Development & Self-Help,The 80/20 Principle (New Updated Edition),Richard Koch,1,5,read,The 80/20 Principle: The Secret to Achieving More with Less,,314
+,,Personal Development & Self-Help,The Almanack of Naval Ravikant,Eric Jorgenson,1,5,read,The Almanack of Naval Ravikant: A Guide to Wealth and Happiness,,316
+,,Personal Development & Self-Help,The Art of Seduction,Robert Greene,1,4,read,The Art of Seduction,,321
+,,Personal Development & Self-Help,The Art of Self Respect,,1,,,,,322
+,,Personal Development & Self-Help,The Artist's Way (30th Anniversary Edition),Julia Cameron,1,5,read,The Artist's Way: A Spiritual Path to Higher Creativity,,325
+,,Personal Development & Self-Help,The Bhagavad Gita,Eknath Easwaran,1,,,,,327
+,,Personal Development & Self-Help,The Big Book of Awards for Grownups,,1,,,,,328
+,,Personal Development & Self-Help,The Big Leap,Gay Hendricks,1,,,,,329
+,,Personal Development & Self-Help,The Charisma Myth,Olivia Fox Cabane,1,3,read,The Charisma Myth: How Anyone Can Master the Art and Science of Personal Magnetism,P2 you rated 3★,331
+,,Personal Development & Self-Help,The Corporate Athlete Advantage,Jim Loehr and Jack Groppel,1,,,,,335
+,,Personal Development & Self-Help,The Courage to Be Disliked,"Ichiro Kishimi, Fumitake Koga",1,3,read,"The Courage to Be Disliked: How to Free Yourself, Change Your Life and Achieve Real Happiness",P2 you rated 3★,46
+,,Personal Development & Self-Help,The Courage to Be Happy,"Ichiro Kishimi, Fumitake Koga",1,,,,,336
+,,Personal Development & Self-Help,The Entitlement Cure,John Townsend,1,,,,,340
+,,Personal Development & Self-Help,The Entrepreneur's Weekly Nietzsche,"Brad Feld, Dave Jilk",1,,,,,341
+,,Personal Development & Self-Help,The Evelyn Wood Seven-Day Speed Reading and Learning Program,Stanley D. Frank,1,4,read,The Evelyn Wood Seven-Day Speed Reading and Learning Program,,345
+,,Personal Development & Self-Help,The Four Agreements,Don Miguel Ruiz,1,4,read,The Four Agreements: A Practical Guide to Personal Freedom,,351
+,,Personal Development & Self-Help,The Good and Beautiful God,James Bryan Smith,1,,,,,355
+,,Personal Development & Self-Help,"The Great Mental Models, Vol. 1: General Thinking Concepts","Shane Parrish, Rhiannon Beaubien",1,,,,,356
+,,Personal Development & Self-Help,The Little Book of Talent,Daniel Coyle,1,5,read,The Little Book of Talent: 52 Tips for Improving Your Skills,,367
+,,Personal Development & Self-Help,The Maxwell Leadership Bible (NKJV),John C. Maxwell,1,,,,,370
+,,Personal Development & Self-Help,The Memory Book,"Harry Lorayne, Jerry Lucas",1,,,,,371
+,,Personal Development & Self-Help,The Most Dangerous Business Book You'll Ever Read,Paul Lemberg,1,,,,,374
+,,Personal Development & Self-Help,The New Toughness Training for Sports,James E. Loehr,1,,,,,50
+,,Personal Development & Self-Help,The Personal Credo Journal,Loehr,1,,,,,380
+,,Personal Development & Self-Help,The Power of Full Engagement,"Jim Loehr, Tony Schwartz",1,,,,,381
+,,Personal Development & Self-Help,The Power of Story,Jim Loehr,1,,,,,5
+,,Personal Development & Self-Help,The Right Stuff,Tom Wolfe,1,,,,,386
+,,Personal Development & Self-Help,The Spiritual Exercises of Saint Ignatius,Translated by Anthony Mottola,1,,,,,392
+,,Personal Development & Self-Help,The Step-by-Step Guide to Prepare for Any Disaster,"""Hell to Prepare in 1""",1,,,,,395
+,,Personal Development & Self-Help,The Whole Man,NEP,1,,,,,402
+,,Personal Development & Self-Help,The Wisdom of Sundays,Oprah Winfrey,1,,,,,403
+,,Personal Development & Self-Help,The World According to Mister Rogers: Important Things to Remember,Fred Rogers,1,,,,,404
+,,Personal Development & Self-Help,Think and Grow Rich,Napoleon Hill,1,,,,,410
+,,Personal Development & Self-Help,Think and Grow Rich Workbook,Napoleon Hill,1,,,,,411
+,,Personal Development & Self-Help,To Hell and Back,Audie Murphy,1,,,,,416
+,,Personal Development & Self-Help,Tools of Titans,Tim Ferriss,1,,,,,417
+,,Personal Development & Self-Help,Tribe of Mentors,Tim Ferriss,1,,,,,51
+,,Personal Development & Self-Help,Unlimited Memory,Kevin Horsley,1,,,,,422
+,,Personal Development & Self-Help,You Were Born for This,Chani Nicholas,1,,,,,430
+,,Philosophy & Religion,The Art of Living,Epictetus,1,,,,,320
+,,Philosophy & Religion,The Beginning of Infinity: Explanations That Transform the World,David Deutsch,1,4,read,The Beginning of Infinity: Explanations That Transform the World,,326
+,,Philosophy & Religion,The Hero with a Thousand Faces,Joseph Campbell,1,4,read,The Hero with a Thousand Faces,,359
+,,Productivity & Habits,Atomic Habits,James Clear,1,4,read,Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones,,30
+,,Productivity & Habits,Do the Work,Steven Pressfield,1,,,,,125
+,,Productivity & Habits,Feel Good Productivity,Ali Abdaal,1,4,read,Feel-Good Productivity: How to Do More of What Matters to You,,139
+,,Productivity & Habits,Pivot: The Only Move That Matters Is Your Next One,Jenny Blake,1,,,,,248
+,,Productivity & Habits,The Daily Pressfield,Steven Pressfield,1,,,,,47
+,,Productivity & Habits,The Getting Things Done Workbook,"David Allen, Brandon Hall",1,,read,Getting Things Done: The Art of Stress-Free Productivity,P2 read but unrated (popular self-help),354
+,,Productivity & Habits,The Now Habit,Neil Fiore,1,,,,,378
+,,Productivity & Habits,The Success Principles (10th Anniversary Edition),Jack Canfield,1,4,read,The Success Principles: How to Get from Where You Are to Where You Want to Be,,396
+,,Productivity & Habits,The Success Principles Workbook,Jack Canfield,1,4,read,The Success Principles: How to Get from Where You Are to Where You Want to Be,,397
+,,Productivity & Habits,The Talent Code,Daniel Coyle,1,,,,,398
+,,Productivity & Habits,Tiny Habits,BJ Fogg,1,4,read,Tiny Habits: The Small Changes That Change Everything,,415
+,,Productivity & Habits,Turning Pro,Steven Pressfield,1,,,,,420
+,,Psychology & Behavioral Science,I See Satan Fall Like Lightning,René Girard,1,,,,,180
+,,Psychology & Behavioral Science,Things Hidden Since the Foundation of the World,René Girard,1,,,,,405
+,,Psychology & Behavioral Science,"Thinking, Fast and Slow",Daniel Kahneman,1,5,read,"Thinking, Fast and Slow",,413
+,,Science,Exercises for the Feynman Lectures on Physics,Feynman,1,,,,,134
+,,Science,Genome,Matt Ridley,1,,,,,155
+,,Science,"The Feynman Lectures on Physics, Vol. 1","Feynman, Leighton, Sands",1,,,,,348
+,,Science,"The Feynman Lectures on Physics, Vol. 2","Feynman, Leighton, Sands",1,,,,,349
+,,Science,"The Feynman Lectures on Physics, Vol. 3","Feynman, Leighton, Sands",1,,,,,350
+,,"Sports, Fitness & Health",Becoming a Supple Leopard,Kelly Starrett,1,,,,,84
+,,"Sports, Fitness & Health",Flexible Dieting,Alan Aragon,1,,,,,37
+,,"Sports, Fitness & Health",How I Play Golf,Tiger Woods,1,,,,,171
+,,"Sports, Fitness & Health",Mathletics,Wayne L. Winston,1,,,,,226
+,,"Sports, Fitness & Health",Play Better Golf,Jack Nicklaus,1,,,,,249
+,,"Sports, Fitness & Health",Rebuilding Milo,Dr. Aaron Horschig,1,,,,,273
+,,"Sports, Fitness & Health",The Book: Playing the Percentages in Baseball,"Tom M. Tango, Mitchel G. Lichtman, Andrew E. Dolphin",1,,,,,330
+,,"Sports, Fitness & Health",The Men of the Fighting 90th,,1,,,,,372
+,,"Sports, Fitness & Health",The Modern Fundamentals of Golf,Ben Hogan,1,,,,,373
+,,"Sports, Fitness & Health",The New Encyclopedia of Modern Bodybuilding,Arnold Schwarzenegger,1,,,,,376
+,,"Sports, Fitness & Health",The Squat Bible,Dr. Aaron Horschig,1,,,,,393
+,,"Sports, Fitness & Health",The Ultimate Book of Sports,The Essential Collection of Stats and Trivia,1,,,,,400
+,,"Sports, Fitness & Health",Trading Bases,Joe Peta,1,,,,,419
+,,Writing & Communication,Bird by Bird,Anne Lamott,1,,,,,10
+,,Writing & Communication,On Writing,Stephen King,1,,,,,9
+,,Writing & Communication,Strunk and White: The Elements of Style,"William Strunk Jr, E.B. White",1,,,,,301
+,,Writing & Communication,The Anatomy of Story: 22 Steps to Becoming a Master Storyteller,John Truby,1,,,,,318
