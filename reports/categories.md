@@ -1,4 +1,4 @@
-# Books by Category (432 works)
+# Books by Category (427 works)
 
 
 ## Personal Development & Self-Help (107)
@@ -111,7 +111,7 @@
 - **Unlimited Memory** — Kevin Horsley
 - **You Were Born for This** — Chani Nicholas
 
-## Finance: Quant & Derivatives (74)
+## Finance: Quant & Derivatives (75)
 
 - **A Crash Course in Options and Futures** — Markus K. Brunnermeier, Friedrich Reichlin
 - **A Linear Algebra Primer for Financial Engineering** — Dan Stefanica
@@ -134,6 +134,7 @@
 - **Empirical Market Microstructure** — Joel Hasbrouck
 - **Expected Returns** — Antti Ilmanen
 - **Famous First Bubbles** — Peter M. Garber
+- **Financial Modeling** — Simon Benninga
 - **Financial Modeling Using Excel** — ?
 - **Financial Modeling Using Excel and VBA** — Chandan Sengupta
 - **Financial Shenanigans, 4e** — Howard Schilit, Jeremy Perler, Yoni Engelhart
@@ -146,7 +147,7 @@
 - **Frequently Asked Questions in Quantitative Finance** — Paul Wilmott
 - **Global Convertible Investing** — H. Carter Woodson
 - **Global Macro Trading** — Greg Gliner
-- **Heard on the Street (right edge — confirm)** — Timothy Falcon Crack
+- **Heard on the Street: Quantitative Questions from Wall Street Job Interviews** — Timothy Falcon Crack
 - **High Performing Investment Teams** — ?
 - **Inside the Yield Book** — Sidney Homer, Martin L. Leibowitz
 - **Introduction to Fixed Income Analytics, 2e** — Frank J. Fabozzi, Steven V. Mann
@@ -227,7 +228,7 @@
 - **Value: The Four Cornerstones of Corporate Finance** — Tim Koller, Richard Dobbs, Bill Huyett
 - **Your Complete Guide to Factor-Based Investing** — Andrew L. Berkin, Larry E. Swedroe
 
-## Math & Statistics (27)
+## Math & Statistics (28)
 
 - **A Calculus Refresher** — A. Albert Klaf
 - **A First Course in Probability, 9e** — Sheldon Ross
@@ -251,6 +252,7 @@
 - **Q Tips: Fast, Scalable, and Maintainable Kdb+** — Nick Psaris
 - **Solutions Manual Differential Equations, 6e** — Nagle, Saff, Snider
 - **Solutions Manual for Fundamentals of Differential Equations and Boundary Value Problems, 6e** — Nagle, Saff, Snider
+- **Student Solutions Manual for Differential Equations** — ?
 - **Student Solutions Manual for Elementary Differential Equations with Boundary Value Problems, 4e** — ?
 - **The Dark Art of Linear Algebra** — Seth Braver
 - **The Enjoyment of Math** — Hans Rademacher, Otto Toeplitz
@@ -441,23 +443,13 @@
 - **Principles of Macroeconomics, 7e** — N. Gregory Mankiw
 - **The Economics of Information (USED)** — Ian Molho
 
-## Career & Job Hunt (6)
+## Career & Job Hunt (5)
 
 - **Ace the Data Science Interview** — Kevin Huo, Nick Singh
 - **HBR Guide to Changing Your Career** — Harvard Business Review
-- **Parachute? 2017 (What Color Is Your Parachute? 2017 — right edge cropped)** — Richard N. Bolles
 - **The Family Nest Egg** — Laura Meier
 - **The Four Steps to the Epiphany** — Steve Blank
 - **What Color Is Your Parachute? 2017** — Richard N. Bolles
-
-## (unmatched) (6)
-
-- **Graph Paper Notebook** — —
-- **Modeling (cropped — blue spine "—eling")** — ?
-- **Pennington (?)** — ?
-- **Six Feynman... (?)** — ?
-- **Student Solutions Manual (Excel 2013 / DiffEq)** — ?
-- **The 5 Conflicts (cropped — top horizontal stack)** — ?
 
 ## Science (5)
 

@@ -1,9 +1,9 @@
 # Cull Candidates — Donation Recommendations
 
-**Total physical copies:** 437  
-**Total flagged for donation review:** 35 copies across 30 works
+**Total physical copies:** 432  
+**Total flagged for donation review:** 29 copies across 24 works
 
-**Target after culling:** 150 copies → need to remove **287** copies
+**Target after culling:** 150 copies → need to remove **282** copies
 
 
 ## Category sizes (sorted)
@@ -11,9 +11,9 @@
 | Category | Works | Notes |
 |----------|-------|-------|
 | Personal Development & Self-Help | 107 | 6 flagged |
-| Finance: Quant & Derivatives | 74 | 3 flagged |
+| Finance: Quant & Derivatives | 75 | 3 flagged |
 | Finance: Corporate & Valuation | 36 | 1 flagged |
-| Math & Statistics | 27 | 1 flagged |
+| Math & Statistics | 28 | 1 flagged |
 | Finance: Investing & Markets | 25 | 1 flagged |
 | Business: Strategy & Management | 23 | 1 flagged |
 | Marketing, Sales & Persuasion | 19 | 0 flagged |
@@ -24,8 +24,7 @@
 | Finance: Test Prep (CFA / CAIA) | 10 | 8 flagged |
 | History, Politics & Current Affairs | 9 | 0 flagged |
 | Economics | 7 | 0 flagged |
-| Career & Job Hunt | 6 | 2 flagged |
-| (uncategorized) | 6 | 5 flagged |
+| Career & Job Hunt | 5 | 1 flagged |
 | Science | 5 | 0 flagged |
 | Writing & Communication | 4 | 0 flagged |
 | Leadership | 4 | 0 flagged |
@@ -63,16 +62,6 @@ Priority key: **P5 = strongest (clean-up / clearly outdated)**, P4 = strong (low
 | P2 | The Charisma Myth | Olivia Fox Cabane | 1 | you rated 3★ on Goodreads (lukewarm) |
 | P2 | The Courage to Be Disliked | Ichiro Kishimi, Fumitake Koga | 1 | you rated 3★ on Goodreads (lukewarm) |
 
-### (uncategorized)
-
-| Priority | Title | Author | Copies | Why |
-|----------|-------|--------|--------|-----|
-| P5 | Graph Paper Notebook | — | 1 | bad/uncertain identification — clean up DB row |
-| P5 | Modeling (cropped — blue spine "—eling") |  | 1 | bad/uncertain identification — clean up DB row |
-| P5 | Pennington (?) |  | 1 | bad/uncertain identification — clean up DB row |
-| P5 | Six Feynman... (?) |  | 1 | bad/uncertain identification — clean up DB row |
-| P5 | The 5 Conflicts (cropped — top horizontal stack) |  | 1 | bad/uncertain identification — clean up DB row |
-
 ### Finance: Quant & Derivatives
 
 | Priority | Title | Author | Copies | Why |
@@ -81,19 +70,18 @@ Priority key: **P5 = strongest (clean-up / clearly outdated)**, P4 = strong (low
 | P3 | Options as a Strategic Investment Study Guide (Fifth Edition) | Lawrence G. McMillan | 1 | companion to existing textbook ("Options as a Strategic Investment, Fifth Edition") — keep textbook, donate companion if done |
 | P2 | Famous First Bubbles | Peter M. Garber | 1 | you rated 3★ on Goodreads (lukewarm) |
 
-### Career & Job Hunt
-
-| Priority | Title | Author | Copies | Why |
-|----------|-------|--------|--------|-----|
-| P5 | Parachute? 2017 (What Color Is Your Parachute? 2017 — right edge cropped) | Richard N. Bolles | 1 | bad/uncertain identification — clean up DB row |
-| P5 | What Color Is Your Parachute? 2017 | Richard N. Bolles | 1 | bad/uncertain identification — clean up DB row |
-
 ### Productivity & Habits
 
 | Priority | Title | Author | Copies | Why |
 |----------|-------|--------|--------|-----|
 | P3 | The Success Principles Workbook | Jack Canfield | 1 | companion to existing textbook ("The Success Principles (10th Anniversary Edition)") — keep textbook, donate companion if done |
 | P2 | The Getting Things Done Workbook | David Allen, Brandon Hall | 1 | read on Goodreads but never rated — popular self-help (easy Kindle replacement) |
+
+### Career & Job Hunt
+
+| Priority | Title | Author | Copies | Why |
+|----------|-------|--------|--------|-----|
+| P5 | What Color Is Your Parachute? 2017 | Richard N. Bolles | 1 | bad/uncertain identification — clean up DB row |
 
 ### Business: Strategy & Management
 
